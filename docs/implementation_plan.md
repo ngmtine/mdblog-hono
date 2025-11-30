@@ -2,14 +2,14 @@
 
 ## 1. 概要
 
-本プロジェクトは、HonoX を使用してブログシステムを構築することを目的としています。ページ全体は HonoX の SSR (Server Side Rendering) とアイランドアーキテクチャで描画し、記事コンテンツは Hono の SSG (Static Site Generation) を利用して静的に生成します。スタイリングには Tailwind CSS v4 を使用し、Markdown のパースと HTML への変換には `remark`, `rehype`, `front-matter` を利用します。
+本プロジェクトは、HonoX を使用してブログシステムを構築することを目的としています。ページ全体は HonoX の SSR (Server Side Rendering) とアイランドアーキテクチャで描画し、記事コンテンツは Hono の SSG (Static Site Generation) を利用して静的に生成します。
 
 ## 2. 主要要件
 
 *   記事の Markdown ファイルは、ブログシステムのリポジトリとは別に管理する。
 *   ページ全体は HonoX で描画し、記事コンテンツは Hono の SSG または SSR を使用してレンダリングする（アイランドアーキテクチャ）。
 *   スタイリングは Tailwind CSS v4 を使用する。
-*   Markdown のパースと HTML の作成は `remark`, `rehype`, `front-matter` を使用する。
+*   Markdown のパースと HTML の作成は `remark`, `rehype`, `gray-matter` を使用する。
 
 ## 3. 実装方針
 
@@ -32,7 +32,7 @@
 
 ### 3.4. Markdown 処理
 
-*   `front-matter` を使用して Markdown ファイルからメタデータ（タイトル、日付、スラッグなど）を抽出します。
+*   `gray-matter` を使用して Markdown ファイルからメタデータ（タイトル、日付、スラッグなど）を抽出します。
 *   `remark` を使用して Markdown を抽象構文木 (AST) に変換します。
 *   `rehype` を使用して AST を HTML に変換します。必要に応じて、コードハイライトなどのプラグインを導入します。
 
