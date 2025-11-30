@@ -1,6 +1,6 @@
 import { jsxRenderer } from "hono/jsx-renderer";
 import { Link, Script } from "honox/server";
-import { Header } from "../components/header";
+import { Header } from "../components/$header";
 import { Sidebar } from "../components/sidebar";
 import { getAllPosts } from "../lib/posts";
 
@@ -48,11 +48,13 @@ export default jsxRenderer(async ({ children, ...rest }) => {
                 <Link href="/app/style.css" rel="stylesheet" />
                 <Script src="/app/client.ts" async />
             </head>
-            <body className="flex flex-col min-h-screen bg-white text-black dark:bg-gray-900 dark:text-white">
+            <body className="bg-white dark:bg-gray-900 min-h-screen text-black dark:text-white">
                 <Header />
-                <div className="flex flex-1">
-                    <Sidebar posts={posts} categories={categories} />
-                    <main className="flex-1 p-8">{children}</main>
+                <div className="flex mx-auto container">
+                    <aside className="hidden lg:block top-0 sticky pt-30 border-gray-200 dark:border-gray-700 border-r w-1/4 h-screen overflow-y-hidden">
+                        <Sidebar posts={posts} categories={categories} />
+                    </aside>
+                    <main className="flex-1 p-8 pt-30">{children}</main>
                 </div>
             </body>
         </html>

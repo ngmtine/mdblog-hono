@@ -7,8 +7,8 @@ type Props = {
 
 export function Sidebar({ posts, categories }: Props) {
     return (
-        <aside className="w-64 bg-gray-800 text-white p-4 space-y-6">
-            <div className="text-xl font-semibold">Categories</div>
+        <div className="space-y-6 bg-gray-800 p-4 w-64 text-white">
+            <div className="font-semibold text-xl">Categories</div>
             <nav>
                 <ul className="space-y-2">
                     {categories.map((category) => (
@@ -23,7 +23,7 @@ export function Sidebar({ posts, categories }: Props) {
                     ))}
                 </ul>
             </nav>
-            <div className="text-xl font-semibold">Recent Posts</div>
+            <div className="font-semibold text-xl">Recent Posts</div>
             <nav>
                 <ul className="space-y-2">
                     {posts.map((post) => (
@@ -38,6 +38,6 @@ export function Sidebar({ posts, categories }: Props) {
                     ))}
                 </ul>
             </nav>
-        </aside>
+        </div>
     );
 }
