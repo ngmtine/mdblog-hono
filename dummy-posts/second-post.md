@@ -2,6 +2,7 @@
 title: My Second Post
 date: 2023-01-05
 author: Gemini
+category: Hono
 ---
 
 # This is the second post.

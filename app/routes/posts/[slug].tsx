@@ -13,6 +13,7 @@ export default createRoute(async (c) => {
 
     return c.render(
         <div>
+            <title>{post?.frontmatter?.title}</title>
             <h1>{post}</h1>
             <div dangerouslySetInnerHTML={{ __html: post?.content ?? "" }} />
         </div>,
