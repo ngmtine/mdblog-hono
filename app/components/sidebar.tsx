@@ -1,4 +1,7 @@
 import type { PostMeta } from "../lib/posts";
+import { ToggleDarkmodeButton } from "./functionalIcons/$toggleDarkmodeButton";
+import { GithubLinkButton } from "./functionalIcons/githubLinkButton";
+import { TwitterLinkButton } from "./functionalIcons/twitterLinkButton";
 
 type Props = {
     posts: PostMeta[];
@@ -38,6 +41,14 @@ export function Sidebar({ posts, categories }: Props) {
                     ))}
                 </ul>
             </nav>
+            <div
+                id="sidebarButtonArea"
+                class="bottom-0 fixed mb-[0.2rem] ml-10 lg:ml-0"
+            >
+                <ToggleDarkmodeButton />
+                <GithubLinkButton />
+                <TwitterLinkButton />
+            </div>
         </div>
     );
 }
