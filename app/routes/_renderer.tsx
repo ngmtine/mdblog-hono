@@ -4,6 +4,24 @@ import { Header } from "../components/$header";
 import { Sidebar } from "../components/sidebar";
 import { getAllPosts } from "../lib/posts";
 
+const themeScriptStr = `
+    const theme = (() => {
+        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+            return localStorage.getItem('theme');
+        }
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            return 'dark';
+        }
+        return 'light';
+    })();
+
+    if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+    } else {
+        document.documentElement.classList.remove('dark');
+    }
+`;
+
 export default jsxRenderer(async ({ children, ...rest }) => {
     const posts = await getAllPosts();
     const title = rest.title ?? "My HonoX Blog";
@@ -15,7 +33,7 @@ export default jsxRenderer(async ({ children, ...rest }) => {
     ];
 
     return (
-        <html lang="en">
+        <html lang="ja">
             <head>
                 <meta charset="utf-8" />
                 <meta
@@ -24,27 +42,7 @@ export default jsxRenderer(async ({ children, ...rest }) => {
                 />
                 <link rel="icon" href="/favicon.ico" />
                 <title>{title}</title>
-                <script
-                    dangerouslySetInnerHTML={{
-                        __html: `
-              const theme = (() => {
-                if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-                  return localStorage.getItem('theme');
-                }
-                if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                  return 'dark';
-                }
-                return 'light';
-              })();
-
-              if (theme === 'dark') {
-                document.documentElement.classList.add('dark');
-              } else {
-                document.documentElement.classList.remove('dark');
-              }
-            `,
-                    }}
-                />
+                <script dangerouslySetInnerHTML={{ __html: themeScriptStr }} />
                 <Link href="/app/style.css" rel="stylesheet" />
                 <Script src="/app/client.ts" async />
             </head>
