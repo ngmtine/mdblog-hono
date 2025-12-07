@@ -8,9 +8,10 @@ type Props = {
     categories: string[];
 };
 
-export function Sidebar({ posts, categories }: Props) {
+export const Sidebar = (props: Props) => {
+    const { posts, categories } = props;
     return (
-        <div className="space-y-6 bg-gray-800 p-4 w-64 text-white">
+        <div className="space-y-6 bg-gray-800 p-4 rounded-md text-white">
             <div className="font-semibold text-xl">Categories</div>
             <nav>
                 <ul className="space-y-2">
@@ -43,7 +44,7 @@ export function Sidebar({ posts, categories }: Props) {
             </nav>
             <div
                 id="sidebarButtonArea"
-                class="bottom-0 fixed mb-[0.2rem] ml-10 lg:ml-0"
+                class="bottom-0 fixed mb-[0.2rem] ml-10"
             >
                 <ToggleDarkmodeButton />
                 <GithubLinkButton />
@@ -51,4 +52,4 @@ export function Sidebar({ posts, categories }: Props) {
             </div>
         </div>
     );
-}
+};

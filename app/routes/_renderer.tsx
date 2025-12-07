@@ -48,11 +48,15 @@ export default jsxRenderer(async ({ children, ...rest }) => {
             </head>
             <body className="bg-white dark:bg-gray-900 min-h-screen text-black dark:text-white">
                 <Header />
-                <div className="flex mx-auto container">
-                    <aside className="hidden lg:block top-0 sticky pt-30 border-gray-200 dark:border-gray-700 border-r w-1/4 h-screen overflow-y-hidden">
-                        <Sidebar posts={posts} categories={categories} />
-                    </aside>
-                    <main className="flex-1 p-8 pt-30">{children}</main>
+                <div className="flex justify-center">
+                    <div className="flex w-full max-w-5xl">
+                        <aside className="hidden md:block top-0 sticky pt-30 pl-4 w-70 min-w-70 h-screen overflow-y-hidden">
+                            <Sidebar posts={posts} categories={categories} />
+                        </aside>
+                        <main className="p-4 md:p-8 pt-30 md:pt-30 w-full overflow-x-hidden">
+                            {children}
+                        </main>
+                    </div>
                 </div>
             </body>
         </html>

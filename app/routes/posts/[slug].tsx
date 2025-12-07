@@ -12,7 +12,7 @@ export default createRoute(async (c) => {
     console.log(post?.content);
 
     return c.render(
-        <div>
+        <div class="bg-gray-800 p-4 rounded-md text-white">
             <title>{post?.frontmatter?.title}</title>
             <h1>{post}</h1>
             <div dangerouslySetInnerHTML={{ __html: post?.content ?? "" }} />
