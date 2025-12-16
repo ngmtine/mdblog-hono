@@ -7,18 +7,22 @@ import remarkFrontmatter from "remark-frontmatter";
 import remarkGfm from "remark-gfm";
 import remarkRehype from "remark-rehype";
 
+export interface PostFrontmatter {
+    title?: string;
+    date?: string;
+    description?: string;
+    category?: string;
+    [key: string]: unknown;
+}
+
 export type Post = {
-    frontmatter: {
-        [key: string]: any;
-    };
+    frontmatter: PostFrontmatter;
     content: string;
 };
 
 export type PostMeta = {
     slug: string;
-    frontmatter: {
-        [key: string]: any;
-    };
+    frontmatter: PostFrontmatter;
 };
 
 export const parseMarkdown = async (
@@ -36,7 +40,7 @@ export const parseMarkdown = async (
 
     const content = String(processedFile);
 
-    return { frontmatter: data, content };
+    return { frontmatter: data as PostFrontmatter, content };
 };
 
 type GetPostBySlugArgs = {
@@ -73,7 +77,7 @@ export const getAllPosts = async (
                     const { data } = matter(content);
                     return {
                         slug: file.replace(/\.md$/, ""),
-                        frontmatter: data,
+                        frontmatter: data as PostFrontmatter,
                     };
                 }),
         );

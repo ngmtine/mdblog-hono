@@ -21,6 +21,12 @@
         "indentStyle": "space",
         "indentWidth": 4
     },
+    "css": {
+        "parser": {
+            "cssModules": true,
+            "tailwindDirectives": true
+        }
+    },
     "linter": {
         "enabled": true,
         "rules": {

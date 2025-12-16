@@ -22,13 +22,16 @@ const themeScriptStr = `
     }
 `;
 
-export default jsxRenderer(async ({ children, ...rest }) => {
+// @ts-expect-error
+export default jsxRenderer(async ({ children, title }) => {
     const posts = await getAllPosts();
-    const title = rest.title ?? "My HonoX Blog";
+    const pageTitle = title ?? "My HonoX Blog";
 
     const categories = [
         ...new Set(
-            posts.map((post) => post.frontmatter.category).filter(Boolean),
+            posts
+                .map((post) => post.frontmatter.category)
+                .filter(Boolean) as string[],
         ),
     ];
 

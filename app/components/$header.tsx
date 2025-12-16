@@ -75,6 +75,7 @@ export const Header = () => {
                             className="md:hidden"
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
                             type="button"
+                            aria-label="Toggle menu"
                         >
                             <svg
                                 className="w-6 h-6"
@@ -82,7 +83,10 @@ export const Header = () => {
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"
                                 xmlns="http://www.w3.org/2000/svg"
+                                role="img"
+                                aria-labelledby="menu-icon-title"
                             >
+                                <title id="menu-icon-title">Menu</title>
                                 <path
                                     strokeLinecap="round"
                                     strokeLinejoin="round"
