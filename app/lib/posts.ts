@@ -73,7 +73,6 @@ export const getPostBySlug = async (
         const file = await fs.readFile(filePath);
         return parseMarkdown(file, slug);
     } catch {
-        // File not found or other error - return undefined silently
         return undefined;
     }
 };
@@ -89,9 +88,12 @@ export const getAllPosts = async (
     const path = await import("node:path");
 
     try {
-        const files = await fs.readdir(directory);
-        const posts = await Promise.all(
-            files
+        // ディレクトリ内のファイル一覧を取得
+        const fileList = await fs.readdir(directory);
+
+        // パースしてPostオブジェクトの配列を作成
+        let postList = await Promise.all(
+            fileList
                 .filter((file) => file.endsWith(".md"))
                 .map(async (file) => {
                     const slug = file.replace(/\.md$/, "");
@@ -100,18 +102,23 @@ export const getAllPosts = async (
                     return parseMarkdown(fileContent, slug);
                 }),
         );
-        // Sort by date descending (newest first)
-        return posts.sort((a, b) => {
+
+        // 公開済みの投稿のみフィルタリング
+        postList = postList.filter((post) => post.frontmatter.published);
+
+        // 作成日の降順でソート
+        postList = postList.sort((a, b) => {
             const dateA = a.frontmatter.date //
-                ? new Date(a.frontmatter.date).getTime()
+                ? new Date(a.frontmatter.create_date).getTime()
                 : 0;
             const dateB = b.frontmatter.date //
-                ? new Date(b.frontmatter.date).getTime()
+                ? new Date(b.frontmatter.create_date).getTime()
                 : 0;
             return dateB - dateA;
         });
+
+        return postList;
     } catch {
-        // Directory not found or other error - return empty array silently
         return [];
     }
 };
