@@ -5,17 +5,17 @@ import type { Post } from "../lib/posts";
 
 type Props = {
     posts: Post[];
-    categories: string[];
+    genreList: string[];
 };
 
 export const Sidebar = (props: Props) => {
-    const { posts, categories } = props;
+    const { posts, genreList } = props;
     return (
         <div class="rounded-xl bg-slate-200 p-2 dark:bg-gray-850">
             <div class="p-2 pt-0 font-semibold text-xl">Genre</div>
             <nav class="rounded-xl bg-slate-300 p-4 py-2 leading-relaxed dark:bg-gray-800">
                 <ul>
-                    {categories.map((genre) => (
+                    {genreList.map((genre) => (
                         <li key={genre}>
                             <a
                                 href={`/genre/${genre.toLowerCase()}`} //
