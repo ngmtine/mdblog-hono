@@ -15,9 +15,8 @@ export const ThemeSwitcher = () => {
 
     const applyTheme = (selectedTheme: Theme) => {
         if (
-            selectedTheme === "dark" ||
-            (selectedTheme === "system" &&
-                window.matchMedia("(prefers-color-scheme: dark)").matches)
+            selectedTheme === "dark" || //
+            (selectedTheme === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches)
         ) {
             document.documentElement.classList.add("dark");
         } else {
@@ -48,7 +47,7 @@ export const ThemeSwitcher = () => {
                 Theme:
             </label>
             <select
-                id="theme-switcher"
+                id="theme-switcher" //
                 value={theme}
                 onChange={handleThemeChange}
                 className="bg-gray-200 dark:bg-gray-700 text-black dark:text-white rounded p-1"

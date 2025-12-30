@@ -2,12 +2,12 @@ export const TwitterLinkButton = () => {
     return (
         <div class="inline-block ml-4 translate-y-[2px]">
             <a
-                href="https://twitter.com/ngmtine"
+                href="https://twitter.com/ngmtine" //
                 target="_blank"
                 rel="noreferrer"
             >
                 <svg
-                    stroke="currentColor"
+                    stroke="currentColor" //
                     fill="currentColor"
                     stroke-width="0"
                     viewBox="0 0 512 512"

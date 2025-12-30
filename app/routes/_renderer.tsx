@@ -25,11 +25,11 @@ const themeScriptStr = `
 // @ts-expect-error
 export default jsxRenderer(async ({ children, title }) => {
     const posts = await getAllPosts();
-    const pageTitle = title ?? "My HonoX Blog";
+    const _pageTitle = title ?? "My HonoX Blog";
 
     const categories = [
         ...new Set(
-            posts
+            posts //
                 .map((post) => post.frontmatter.category)
                 .filter(Boolean) as string[],
         ),
@@ -40,7 +40,7 @@ export default jsxRenderer(async ({ children, title }) => {
             <head>
                 <meta charset="utf-8" />
                 <meta
-                    name="viewport"
+                    name="viewport" //
                     content="width=device-width, initial-scale=1.0"
                 />
                 <link rel="icon" href="/favicon.ico" />
@@ -56,9 +56,7 @@ export default jsxRenderer(async ({ children, title }) => {
                         <aside className="hidden md:block top-0 sticky pt-30 pl-4 w-70 min-w-70 h-screen overflow-y-hidden">
                             <Sidebar posts={posts} categories={categories} />
                         </aside>
-                        <main className="p-4 md:p-8 pt-30 md:pt-30 w-full overflow-x-hidden">
-                            {children}
-                        </main>
+                        <main className="p-4 md:p-8 pt-30 md:pt-30 w-full overflow-x-hidden">{children}</main>
                     </div>
                 </div>
             </body>

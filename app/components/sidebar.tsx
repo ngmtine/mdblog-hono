@@ -18,7 +18,7 @@ export const Sidebar = (props: Props) => {
                     {categories.map((category) => (
                         <li key={category}>
                             <a
-                                href={`/category/${category.toLowerCase()}`}
+                                href={`/category/${category.toLowerCase()}`} //
                                 className="block hover:text-blue-400"
                             >
                                 {category}
@@ -33,7 +33,7 @@ export const Sidebar = (props: Props) => {
                     {posts.map((post) => (
                         <li key={post.slug}>
                             <a
-                                href={`/posts/${post.slug}`}
+                                href={`/posts/${post.slug}`} //
                                 className="block hover:text-blue-400"
                             >
                                 {post.frontmatter.title ?? post.slug}
@@ -43,7 +43,7 @@ export const Sidebar = (props: Props) => {
                 </ul>
             </nav>
             <div
-                id="sidebarButtonArea"
+                id="sidebarButtonArea" //
                 class="bottom-0 fixed mb-[0.2rem] ml-10"
             >
                 <ToggleDarkmodeButton />

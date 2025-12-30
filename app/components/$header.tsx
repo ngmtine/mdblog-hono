@@ -30,7 +30,7 @@ export const Header = () => {
 
     return (
         <header
-            ref={headerRef}
+            ref={headerRef} //
             className="top-0 z-50 fixed bg-white/80 dark:bg-gray-900/80 shadow-md backdrop-blur-xs w-full transition-transform translate-y-0 duration-300"
         >
             <div className="flex justify-center">
@@ -40,11 +40,7 @@ export const Header = () => {
                     </a>
                     <div className="flex items-center space-x-4">
                         <div className="relative">
-                            <nav
-                                className={`${
-                                    isMenuOpen ? "block" : "hidden"
-                                } md:block absolute md:relative top-full left-0 md:top-auto md:left-auto w-full md:w-auto`}
-                            >
+                            <nav className={`${isMenuOpen ? "block" : "hidden"} md:block absolute md:relative top-full left-0 md:top-auto md:left-auto w-full md:w-auto`}>
                                 <ul className="flex md:flex-row flex-col md:space-x-4 bg-white md:bg-transparent dark:bg-gray-800 shadow-lg md:shadow-none p-4 md:p-0 rounded-md">
                                     <li>
                                         <a href="/" className="hover:underline">
@@ -53,7 +49,7 @@ export const Header = () => {
                                     </li>
                                     <li>
                                         <a
-                                            href="/posts"
+                                            href="/posts" //
                                             className="hover:underline"
                                         >
                                             Posts
@@ -61,7 +57,7 @@ export const Header = () => {
                                     </li>
                                     <li>
                                         <a
-                                            href="/about"
+                                            href="/about" //
                                             className="hover:underline"
                                         >
                                             About
@@ -72,13 +68,13 @@ export const Header = () => {
                         </div>
                         <ThemeSwitcher />
                         <button
-                            className="md:hidden"
+                            className="md:hidden" //
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
                             type="button"
                             aria-label="Toggle menu"
                         >
                             <svg
-                                className="w-6 h-6"
+                                className="w-6 h-6" //
                                 fill="none"
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"
@@ -88,7 +84,7 @@ export const Header = () => {
                             >
                                 <title id="menu-icon-title">Menu</title>
                                 <path
-                                    strokeLinecap="round"
+                                    strokeLinecap="round" //
                                     strokeLinejoin="round"
                                     strokeWidth={2}
                                     d="M4 6h16M4 12h16m-7 6h7"

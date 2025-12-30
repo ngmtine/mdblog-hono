@@ -2,12 +2,12 @@ export const GithubLinkButton = () => {
     return (
         <div class="inline-block ml-4 translate-y-[2px]">
             <a
-                href="https://github.com/ngmtine"
+                href="https://github.com/ngmtine" //
                 target="_blank"
                 rel="noreferrer"
             >
                 <svg
-                    stroke="currentColor"
+                    stroke="currentColor" //
                     fill="currentColor"
                     stroke-width="0"
                     viewBox="0 0 496 512"

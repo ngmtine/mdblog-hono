@@ -7,9 +7,8 @@ export const ToggleDarkmodeButton = () => {
         // 初期ロード時にlocalStorageから設定を読み込む
         const savedTheme = localStorage.getItem("theme");
         if (
-            savedTheme === "dark" ||
-            (!savedTheme &&
-                window.matchMedia("(prefers-color-scheme: dark)").matches)
+            savedTheme === "dark" || //
+            (!savedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches)
         ) {
             document.documentElement.classList.add("dark");
             setIsDarkMode(true);
@@ -35,13 +34,13 @@ export const ToggleDarkmodeButton = () => {
     return (
         <div class="inline-block mb-1 ml-3">
             <button
-                type="button"
+                type="button" //
                 aria-label="toggle darkmode button"
                 class="cursor-pointer"
                 onClick={toggleDarkMode}
             >
                 <svg
-                    stroke="currentColor"
+                    stroke="currentColor" //
                     fill="currentColor"
                     stroke-width="0"
                     viewBox="0 0 512 512"
