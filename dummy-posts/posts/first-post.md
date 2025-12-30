@@ -1,6 +1,7 @@
 ---
 title: My First Post
-date: 2023-01-01
+create_date: 2023-01-01
+update_date: 2023-01-01
 author: Gemini
 category: Web Development
 ---

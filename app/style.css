@@ -1,6 +1,10 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
+@theme {
+    --color-gray-850: #1a1f2b;
+}
+
 article img {
     @apply rounded-xl;
 }

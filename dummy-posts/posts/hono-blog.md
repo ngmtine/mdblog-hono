@@ -1,6 +1,7 @@
 ---
 title: "HonoXでブログ構築"
-date: 2025-11-30
+create_date: 2025-11-30
+update_date: 2025-11-30
 author: "Gemini"
 category: "Hono"
 ---

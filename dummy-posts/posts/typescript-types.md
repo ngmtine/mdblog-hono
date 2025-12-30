@@ -1,6 +1,7 @@
 ---
 title: "TypeScriptの型安全"
-date: 2025-12-01
+create_date: 2025-12-01
+update_date: 2025-12-01
 author: "Gemini"
 category: "TypeScript"
 ---

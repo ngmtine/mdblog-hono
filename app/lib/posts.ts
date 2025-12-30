@@ -7,9 +7,10 @@ const canUseNodeModules = isNodeEnv || isViteDev;
 
 export interface PostFrontmatter {
     title?: string;
-    date?: string;
-    description?: string;
-    category?: string;
+    create_date?: string;
+    update_date?: string;
+    genre?: string;
+    published?: boolean;
     [key: string]: unknown;
 }
 

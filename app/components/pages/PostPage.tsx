@@ -7,12 +7,15 @@ type Props = {
 
 export const PostPage = ({ post, slug }: Props) => (
     <div>
-        <title>{post.frontmatter.title || slug}</title>
-        <article class="max-w-none">
-            <h1 class="text-4xl font-bold mb-4">{post.frontmatter.title || slug}</h1>
-            {post.frontmatter.date && <p class="text-gray-600 dark:text-gray-400 text-sm mb-6">{new Date(post.frontmatter.date).toLocaleDateString()}</p>}
+        <article class="space-y-6 bg-gray-850 p-2 rounded-xl text-white max-w-none">
+            <h1 class="text-4xl font-bold p-2">{post.frontmatter.title || slug}</h1>
+            {post.frontmatter.create_date && (
+                <p class="text-gray-600 dark:text-gray-400 text-sm mb-6">
+                    {new Date(post.frontmatter.create_date).toLocaleDateString()} {/* */}
+                </p>
+            )}
             <div
-                class="leading-relaxed" //
+                class="leading-relaxed bg-gray-800 p-4 rounded-xl" //
                 dangerouslySetInnerHTML={{ __html: post.content }}
             />
         </article>

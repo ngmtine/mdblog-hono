@@ -1,6 +1,7 @@
 ---
 title: "HonoXのアーキテクチャを深く知る：File-based RoutingからIslandsまで"
-date: "2025-11-30"
+create_date: "2025-11-30"
+update_date: "2025-11-30"
 category: "Web Development"
 tags: ["Hono", "HonoX", "Web", "JavaScript", "TypeScript", "Architecture"]
 ---
