@@ -11,7 +11,7 @@ type Props = {
 export const Sidebar = (props: Props) => {
     const { posts, categories } = props;
     return (
-        <div class="space-y-6 bg-gray-800 p-4 rounded-xl text-white">
+        <div class="space-y-6 rounded-xl bg-gray-800 p-4 text-white">
             <div class="font-semibold text-xl">Categories</div>
             <nav>
                 <ul class="space-y-2">
@@ -44,7 +44,7 @@ export const Sidebar = (props: Props) => {
             </nav>
             <div
                 id="sidebarButtonArea" //
-                class="bottom-0 fixed mb-[0.2rem] ml-10"
+                class="fixed bottom-0 mb-[0.2rem] ml-10"
             >
                 <ToggleDarkmodeButton />
                 <GithubLinkButton />

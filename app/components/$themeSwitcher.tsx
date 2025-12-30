@@ -50,7 +50,7 @@ export const ThemeSwitcher = () => {
                 id="theme-switcher" //
                 value={theme}
                 onChange={handleThemeChange}
-                class="bg-gray-200 dark:bg-gray-700 text-black dark:text-white rounded p-1"
+                class="rounded bg-gray-200 p-1 text-black dark:bg-gray-700 dark:text-white"
             >
                 <option value="light">Light</option>
                 <option value="dark">Dark</option>

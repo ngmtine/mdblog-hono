@@ -1,6 +1,6 @@
 export const TwitterLinkButton = () => {
     return (
-        <div class="inline-block ml-4 translate-y-[2px]">
+        <div class="ml-4 inline-block translate-y-[2px]">
             <a
                 href="https://twitter.com/ngmtine" //
                 target="_blank"
@@ -11,7 +11,7 @@ export const TwitterLinkButton = () => {
                     fill="currentColor"
                     stroke-width="0"
                     viewBox="0 0 512 512"
-                    class="w-10 h-10"
+                    class="h-10 w-10"
                     height="1em"
                     width="1em"
                     xmlns="http://www.w3.org/2000/svg"

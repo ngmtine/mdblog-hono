@@ -9,7 +9,7 @@
         "copy-images": "dotenv -- sh -c 'cp -r \"$POSTS_REPO_DIR/images\" dist/ 2>/dev/null || true'",
         "preview": "dotenv -- sh -c 'wrangler dev'",
         "deploy": "npm run build && wrangler deploy",
-        "biome": "biome check --write",
+        "biome": "biome check --write --unsafe",
         "typecheck": "tsgo --noEmit"
     },
     "private": true,

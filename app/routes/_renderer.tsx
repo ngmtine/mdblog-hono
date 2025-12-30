@@ -50,14 +50,14 @@ export default jsxRenderer(async ({ children, title }) => {
                 <Link href="/app/style.css" rel="stylesheet" />
                 <Script src="/app/client.ts" async />
             </head>
-            <body class="bg-white dark:bg-gray-900 min-h-screen text-black dark:text-white">
+            <body class="min-h-screen bg-white text-black dark:bg-gray-900 dark:text-white">
                 <Header />
                 <div class="flex justify-center">
                     <div class="flex w-full max-w-5xl">
-                        <aside class="hidden md:block top-0 sticky pt-30 pl-4 w-70 min-w-70 h-screen overflow-y-hidden">
+                        <aside class="sticky top-0 hidden h-screen w-70 min-w-70 overflow-y-hidden pt-30 pl-4 md:block">
                             <Sidebar posts={posts} categories={categories} />
                         </aside>
-                        <main class="p-4 md:p-8 pt-30 md:pt-30 w-full overflow-x-hidden">{children}</main>
+                        <main class="w-full overflow-x-hidden p-4 pt-30 md:p-8 md:pt-30">{children}</main>
                     </div>
                 </div>
             </body>

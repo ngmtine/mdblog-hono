@@ -32,17 +32,17 @@ export const Header = () => {
     return (
         <header
             ref={headerRef} //
-            class="top-0 z-50 fixed bg-white/80 dark:bg-gray-900/80 shadow-md backdrop-blur-xs w-full transition-transform translate-y-0 duration-300"
+            class="fixed top-0 z-50 w-full translate-y-0 bg-white/80 shadow-md backdrop-blur-xs transition-transform duration-300 dark:bg-gray-900/80"
         >
             <div class="flex justify-center">
-                <div class="flex justify-between items-center p-4 w-full max-w-5xl">
+                <div class="flex w-full max-w-5xl items-center justify-between p-4">
                     <a href="/" class="font-bold text-2xl">
                         My HonoX Blog
                     </a>
                     <div class="flex items-center space-x-4">
                         <div class="relative">
-                            <nav class={`${isMenuOpen ? "block" : "hidden"} md:block absolute md:relative top-full left-0 md:top-auto md:left-auto w-full md:w-auto`}>
-                                <ul class="flex md:flex-row flex-col md:space-x-4 bg-white md:bg-transparent dark:bg-gray-800 shadow-lg md:shadow-none p-4 md:p-0 rounded-md">
+                            <nav class={`${isMenuOpen ? "block" : "hidden"} absolute top-full left-0 w-full md:relative md:top-auto md:left-auto md:block md:w-auto`}>
+                                <ul class="flex flex-col rounded-md bg-white p-4 shadow-lg md:flex-row md:space-x-4 md:bg-transparent md:p-0 md:shadow-none dark:bg-gray-800">
                                     <li>
                                         <a href="/" class="hover:underline">
                                             Home
@@ -75,7 +75,7 @@ export const Header = () => {
                             aria-label="Toggle menu"
                         >
                             <svg
-                                class="w-6 h-6" //
+                                class="h-6 w-6" //
                                 fill="none"
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"

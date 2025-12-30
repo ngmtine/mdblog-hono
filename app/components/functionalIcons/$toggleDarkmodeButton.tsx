@@ -32,7 +32,7 @@ export const ToggleDarkmodeButton = () => {
     };
 
     return (
-        <div class="inline-block mb-1 ml-3">
+        <div class="mb-1 ml-3 inline-block">
             <button
                 type="button" //
                 aria-label="toggle darkmode button"
@@ -44,7 +44,7 @@ export const ToggleDarkmodeButton = () => {
                     fill="currentColor"
                     stroke-width="0"
                     viewBox="0 0 512 512"
-                    class="w-9 h-9"
+                    class="h-9 w-9"
                     height="1em"
                     width="1em"
                     xmlns="http://www.w3.org/2000/svg"

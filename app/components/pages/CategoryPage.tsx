@@ -8,7 +8,7 @@ type Props = {
 export const CategoryPage = ({ category, posts }: Props) => (
     <div>
         <title>Category: {category}</title>
-        <h1 class="text-4xl font-bold mb-8">Category: {category}</h1>
+        <h1 class="mb-8 font-bold text-4xl">Category: {category}</h1>
         <ul class="space-y-4">
             {posts.map((post) => (
                 <li key={post.slug}>
