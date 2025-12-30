@@ -1,10 +1,10 @@
-import type { PostMeta } from "../lib/posts";
+import type { Post } from "../lib/posts";
 import { ToggleDarkmodeButton } from "./functionalIcons/$toggleDarkmodeButton";
 import { GithubLinkButton } from "./functionalIcons/githubLinkButton";
 import { TwitterLinkButton } from "./functionalIcons/twitterLinkButton";
 
 type Props = {
-    posts: PostMeta[];
+    posts: Post[];
     categories: string[];
 };
 

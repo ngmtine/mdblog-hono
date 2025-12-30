@@ -14,20 +14,17 @@ export interface PostFrontmatter {
 }
 
 export type Post = {
+    slug: string;
     frontmatter: PostFrontmatter;
     content: string;
 };
 
-export type PostMeta = {
-    slug: string;
-    frontmatter: PostFrontmatter;
-};
-
 export const parseMarkdown = async (
-    file: Buffer, //
+    file: Buffer,
+    slug: string, //
 ): Promise<Post> => {
     if (!canUseNodeModules) {
-        return { frontmatter: {}, content: "" };
+        return { slug, frontmatter: {}, content: "" };
     }
 
     const matter = (await import("gray-matter")).default;
@@ -48,7 +45,7 @@ export const parseMarkdown = async (
 
     const content = String(processedFile);
 
-    return { frontmatter: data as PostFrontmatter, content };
+    return { slug, frontmatter: data as PostFrontmatter, content };
 };
 
 type GetPostBySlugArgs = {
@@ -71,7 +68,7 @@ export const getPostBySlug = async (
     try {
         const filePath = path.join(directory, `${slug}.md`);
         const file = await fs.readFile(filePath);
-        return parseMarkdown(file);
+        return parseMarkdown(file, slug);
     } catch {
         // File not found or other error - return undefined silently
         return undefined;
@@ -80,14 +77,13 @@ export const getPostBySlug = async (
 
 export const getAllPosts = async (
     directory = POSTS_DIRECTORY, //
-): Promise<PostMeta[]> => {
+): Promise<Post[]> => {
     if (!canUseNodeModules) {
         return [];
     }
 
     const fs = await import("node:fs/promises");
     const path = await import("node:path");
-    const matter = (await import("gray-matter")).default;
 
     try {
         const files = await fs.readdir(directory);
@@ -95,13 +91,10 @@ export const getAllPosts = async (
             files
                 .filter((file) => file.endsWith(".md"))
                 .map(async (file) => {
+                    const slug = file.replace(/\.md$/, "");
                     const filePath = path.join(directory, file);
-                    const content = await fs.readFile(filePath, "utf-8");
-                    const { data } = matter(content);
-                    return {
-                        slug: file.replace(/\.md$/, ""),
-                        frontmatter: data as PostFrontmatter,
-                    };
+                    const fileContent = await fs.readFile(filePath);
+                    return parseMarkdown(fileContent, slug);
                 }),
         );
         // Sort by date descending (newest first)

@@ -1,5 +1,14 @@
+import { ssgParams } from "hono/ssg";
 import { createRoute } from "honox/factory";
+import { CategoryPage } from "../../components/pages/CategoryPage";
 import { getAllPosts } from "../../lib/posts";
+
+// SSG: Generate static files for each category
+export const ssg = ssgParams(async () => {
+    const posts = await getAllPosts();
+    const categories = [...new Set(posts.map((post) => post.frontmatter.category).filter((category): category is string => Boolean(category)))];
+    return categories.map((category) => ({ category: category.toLowerCase() }));
+});
 
 export default createRoute(async (c) => {
     const category = c.req.param("category");
@@ -12,20 +21,5 @@ export default createRoute(async (c) => {
         return c.notFound();
     }
 
-    return c.render(
-        <div>
-            <title>Category: {category}</title>
-            <h1 class="text-4xl font-bold mb-8">Category: {category}</h1>
-            <ul class="space-y-4">
-                {filteredPosts.map((post) => (
-                    <li key={post.slug}>
-                        <a href={`/posts/${post.slug}`} class="text-2xl text-blue-600 hover:underline">
-                            {post.frontmatter.title ?? post.slug}
-                        </a>
-                        <p class="text-gray-600">{post.frontmatter.date}</p>
-                    </li>
-                ))}
-            </ul>
-        </div>,
-    );
+    return c.render(<CategoryPage category={category} posts={filteredPosts} />);
 });
