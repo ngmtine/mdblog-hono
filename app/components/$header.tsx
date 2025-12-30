@@ -32,26 +32,26 @@ export const Header = () => {
     return (
         <header
             ref={headerRef} //
-            className="top-0 z-50 fixed bg-white/80 dark:bg-gray-900/80 shadow-md backdrop-blur-xs w-full transition-transform translate-y-0 duration-300"
+            class="top-0 z-50 fixed bg-white/80 dark:bg-gray-900/80 shadow-md backdrop-blur-xs w-full transition-transform translate-y-0 duration-300"
         >
-            <div className="flex justify-center">
-                <div className="flex justify-between items-center p-4 w-full max-w-5xl">
-                    <a href="/" className="font-bold text-2xl">
+            <div class="flex justify-center">
+                <div class="flex justify-between items-center p-4 w-full max-w-5xl">
+                    <a href="/" class="font-bold text-2xl">
                         My HonoX Blog
                     </a>
-                    <div className="flex items-center space-x-4">
-                        <div className="relative">
-                            <nav className={`${isMenuOpen ? "block" : "hidden"} md:block absolute md:relative top-full left-0 md:top-auto md:left-auto w-full md:w-auto`}>
-                                <ul className="flex md:flex-row flex-col md:space-x-4 bg-white md:bg-transparent dark:bg-gray-800 shadow-lg md:shadow-none p-4 md:p-0 rounded-md">
+                    <div class="flex items-center space-x-4">
+                        <div class="relative">
+                            <nav class={`${isMenuOpen ? "block" : "hidden"} md:block absolute md:relative top-full left-0 md:top-auto md:left-auto w-full md:w-auto`}>
+                                <ul class="flex md:flex-row flex-col md:space-x-4 bg-white md:bg-transparent dark:bg-gray-800 shadow-lg md:shadow-none p-4 md:p-0 rounded-md">
                                     <li>
-                                        <a href="/" className="hover:underline">
+                                        <a href="/" class="hover:underline">
                                             Home
                                         </a>
                                     </li>
                                     <li>
                                         <a
                                             href="/posts" //
-                                            className="hover:underline"
+                                            class="hover:underline"
                                         >
                                             Posts
                                         </a>
@@ -59,7 +59,7 @@ export const Header = () => {
                                     <li>
                                         <a
                                             href="/about" //
-                                            className="hover:underline"
+                                            class="hover:underline"
                                         >
                                             About
                                         </a>
@@ -69,13 +69,13 @@ export const Header = () => {
                         </div>
                         <ThemeSwitcher />
                         <button
-                            className="md:hidden" //
+                            class="md:hidden" //
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
                             type="button"
                             aria-label="Toggle menu"
                         >
                             <svg
-                                className="w-6 h-6" //
+                                class="w-6 h-6" //
                                 fill="none"
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"

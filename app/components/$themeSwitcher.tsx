@@ -42,15 +42,15 @@ export const ThemeSwitcher = () => {
     };
 
     return (
-        <div className="p-4">
-            <label htmlFor="theme-switcher" className="mr-2">
+        <div class="p-4">
+            <label htmlFor="theme-switcher" class="mr-2">
                 Theme:
             </label>
             <select
                 id="theme-switcher" //
                 value={theme}
                 onChange={handleThemeChange}
-                className="bg-gray-200 dark:bg-gray-700 text-black dark:text-white rounded p-1"
+                class="bg-gray-200 dark:bg-gray-700 text-black dark:text-white rounded p-1"
             >
                 <option value="light">Light</option>
                 <option value="dark">Dark</option>

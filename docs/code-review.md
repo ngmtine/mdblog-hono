@@ -249,7 +249,7 @@ export const getPostBySlug = async (args) => {
 | 項目 | 現状 | 推奨 |
 |------|------|------|
 | テーマ管理 | ThemeSwitcher + ToggleDarkmodeButton で二重管理 | 統一化 |
-| CSS クラス | `className` と `class` が混在 | `className` に統一 |
+| CSS クラス | `class` と `class` が混在 | `class` に統一 |
 | マジックナンバー | `pt-30 w-70` などハードコード | CSS 変数化を検討 |
 | テスト | なし | Vitest による統合テスト追加 |
 
