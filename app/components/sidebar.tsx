@@ -13,7 +13,7 @@ export const Sidebar = (props: Props) => {
     return (
         <div class="rounded-xl bg-slate-200 p-2 dark:bg-gray-850">
             <div class="p-2 pt-0 font-semibold text-xl">Genre</div>
-            <nav class="rounded-xl bg-slate-300 p-4 leading-relaxed dark:bg-gray-800">
+            <nav class="rounded-xl bg-slate-300 p-4 py-2 leading-relaxed dark:bg-gray-800">
                 <ul>
                     {categories.map((genre) => (
                         <li key={genre}>
@@ -28,7 +28,7 @@ export const Sidebar = (props: Props) => {
                 </ul>
             </nav>
             <div class="p-2 font-semibold text-xl">Recent</div>
-            <nav class="rounded-xl bg-slate-300 p-4 leading-relaxed dark:bg-gray-800">
+            <nav class="rounded-xl bg-slate-300 p-4 py-2 leading-relaxed dark:bg-gray-800">
                 <ul>
                     {posts.map((post) => (
                         <li key={post.slug}>

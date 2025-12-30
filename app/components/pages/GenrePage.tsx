@@ -6,13 +6,15 @@ type Props = {
 };
 
 export const GenrePage = ({ genre, posts }: Props) => (
-    <div>
-        <title>{genre}</title>
-        <h1 class="mb-8 font-bold text-4xl">Genre: {genre}</h1>
-        <ul class="space-y-4">
+    <div class="rounded-xl bg-slate-200 p-2 dark:bg-gray-850">
+        <h1 class="p-2 font-bold text-4xl">{genre}</h1>
+        <ul class="rounded-xl bg-slate-300 p-4 leading-relaxed dark:bg-gray-800">
             {posts.map((post) => (
                 <li key={post.slug}>
-                    <a href={`/posts/${post.slug}`} class="text-2xl text-blue-600 hover:underline">
+                    <a
+                        href={`/posts/${post.slug}`} //
+                        class="block hover:text-blue-400"
+                    >
                         {post.frontmatter.title ?? post.slug}
                     </a>
                     <p class="text-gray-600">{post.frontmatter.date}</p>
