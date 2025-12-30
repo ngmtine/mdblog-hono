@@ -3,10 +3,10 @@
     "type": "module",
     "scripts": {
         "dev": "POSTS_REPO_DIR=dummy-posts vite",
-        "build": "npm run build:fetch-posts && npm run build:copy-images && npm run build:vite",
-        "build:fetch-posts": "dotenv -- sh -c 'rm -rf \"$POSTS_REPO_DIR\" && git clone --depth 1 \"$POSTS_REPO_URL\" \"$POSTS_REPO_DIR\" --config url.\"git@github.com:\".insteadOf=\"https://github.com/\"'",
-        "build:copy-images": "dotenv -- sh -c 'cp -r \"$POSTS_REPO_DIR/images\" dist/ 2>/dev/null || true'",
+        "build": "npm run fetch-posts && npm run build:vite && npm run copy-images",
+        "fetch-posts": "dotenv -- sh -c 'rm -rf \"$POSTS_REPO_DIR\" && git clone --depth 1 \"$POSTS_REPO_URL\" \"$POSTS_REPO_DIR\" --config url.\"git@github.com:\".insteadOf=\"https://github.com/\"'",
         "build:vite": "dotenv -- sh -c 'vite build --mode client && vite build'",
+        "copy-images": "dotenv -- sh -c 'cp -r \"$POSTS_REPO_DIR/images\" dist/ 2>/dev/null || true'",
         "preview": "dotenv -- sh -c 'wrangler dev'",
         "deploy": "npm run build && wrangler deploy",
         "biome": "biome check --write",

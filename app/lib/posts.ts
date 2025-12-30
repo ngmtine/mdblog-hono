@@ -43,7 +43,9 @@ export const parseMarkdown = async (
         .use(rehypeStringify)
         .process(markdownContent);
 
-    const content = String(processedFile);
+    let content = String(processedFile);
+    // 画像の相対パスをルート相対パスに変換
+    content = content.replace(/src="images([^"]*)"/g, 'src="/images/$1"');
 
     return { slug, frontmatter: data as PostFrontmatter, content };
 };
