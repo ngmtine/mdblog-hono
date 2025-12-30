@@ -1,7 +1,7 @@
-import type { Post } from "../lib/posts";
 import { ToggleDarkmodeButton } from "./functionalIcons/$toggleDarkmodeButton";
 import { GithubLinkButton } from "./functionalIcons/githubLinkButton";
 import { TwitterLinkButton } from "./functionalIcons/twitterLinkButton";
+import type { Post } from "../lib/posts";
 
 type Props = {
     posts: Post[];

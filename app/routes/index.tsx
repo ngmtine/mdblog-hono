@@ -1,4 +1,5 @@
 import { createRoute } from "honox/factory";
+
 import { IndexPage } from "../components/pages/IndexPage";
 import { getAllPosts } from "../lib/posts";
 

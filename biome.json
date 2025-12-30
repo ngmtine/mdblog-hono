@@ -1,5 +1,5 @@
 {
-    "$schema": "https://biomejs.dev/schemas/2.3.8/schema.json",
+    "$schema": "https://biomejs.dev/schemas/2.3.10/schema.json",
     "vcs": {
         "enabled": true,
         "clientKind": "git",
@@ -30,7 +30,27 @@
     "assist": {
         "actions": {
             "source": {
-                "organizeImports": "on"
+                "organizeImports": {
+                    "level": "on",
+                    "options": {
+                        "groups": [
+                            { "type": false, "source": ":NODE:" },
+                            { "type": true, "source": ":NODE:" },
+                            ":BLANK_LINE:",
+                            { "type": false, "source": ":PACKAGE:" },
+                            { "type": true, "source": ":PACKAGE:" },
+                            ":BLANK_LINE:",
+                            { "type": false, "source": ":ALIAS:" },
+                            { "type": false, "source": ":PATH:" },
+                            { "type": true, "source": ":ALIAS:" },
+                            { "type": true, "source": ":PATH:" },
+                            ":BLANK_LINE:",
+                            { "type": false },
+                            { "type": true },
+                            ":BLANK_LINE:"
+                        ]
+                    }
+                }
             }
         }
     }

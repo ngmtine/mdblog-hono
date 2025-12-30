@@ -1,5 +1,6 @@
 import { Hono } from "hono";
 import { ssgParams } from "hono/ssg";
+
 import { AboutPage } from "./components/pages/AboutPage";
 import { CategoryPage } from "./components/pages/CategoryPage";
 import { IndexPage } from "./components/pages/IndexPage";

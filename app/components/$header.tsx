@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "hono/jsx";
+
 import { ThemeSwitcher } from "./$themeSwitcher";
 
 export const Header = () => {

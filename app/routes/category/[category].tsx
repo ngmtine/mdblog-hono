@@ -1,5 +1,6 @@
 import { ssgParams } from "hono/ssg";
 import { createRoute } from "honox/factory";
+
 import { CategoryPage } from "../../components/pages/CategoryPage";
 import { getAllPosts } from "../../lib/posts";
 

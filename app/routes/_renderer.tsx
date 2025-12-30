@@ -1,5 +1,6 @@
 import { jsxRenderer } from "hono/jsx-renderer";
 import { Link, Script } from "honox/server";
+
 import { Header } from "../components/$header";
 import { Sidebar } from "../components/sidebar";
 import { getAllPosts } from "../lib/posts";
