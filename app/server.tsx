@@ -20,6 +20,7 @@ if (isNodeEnv) {
     app.get("/", async (c) => {
         const posts = await getAllPosts();
         return c.render(
+            // @ts-expect-error
             <div>
                 <title>Blog</title>
                 <h1 class="text-4xl font-bold mb-8">Blog Posts</h1>
