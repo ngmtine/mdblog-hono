@@ -109,10 +109,10 @@ export const getAllPosts = async (
         // 作成日の降順でソート
         postList = postList.sort((a, b) => {
             const dateA = a.frontmatter.date //
-                ? new Date(a.frontmatter.create_date).getTime()
+                ? new Date(a.frontmatter.create_date ?? 2020).getTime()
                 : 0;
             const dateB = b.frontmatter.date //
-                ? new Date(b.frontmatter.create_date).getTime()
+                ? new Date(b.frontmatter.create_date ?? 2020).getTime()
                 : 0;
             return dateB - dateA;
         });
