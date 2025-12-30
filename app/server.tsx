@@ -45,24 +45,24 @@ app.get(
 
 // Dynamic routes with ssgParams for categories
 app.get(
-    "/category/:category",
+    "/genre/:genre",
     ssgParams(async () => {
         const posts = await getAllPosts();
-        const categories = [...new Set(posts.map((post) => post.frontmatter.category).filter((category): category is string => Boolean(category)))];
-        return categories.map((category) => ({ category: category.toLowerCase() }));
+        const categories = [...new Set(posts.map((post) => post.frontmatter.genre).filter((genre): genre is string => Boolean(genre)))];
+        return categories.map((genre) => ({ genre: genre.toLowerCase() }));
     }),
     async (c) => {
-        const category = c.req.param("category");
-        if (!category) return c.notFound();
+        const genre = c.req.param("genre");
+        if (!genre) return c.notFound();
 
         const posts = await getAllPosts();
-        const filteredPosts = posts.filter((post) => post.frontmatter.category?.toLowerCase() === category.toLowerCase());
+        const filteredPosts = posts.filter((post) => post.frontmatter.genre?.toLowerCase() === genre.toLowerCase());
 
         if (filteredPosts.length === 0) {
             return c.notFound();
         }
 
-        return c.render(<GenrePage category={category} posts={filteredPosts} />);
+        return c.render(<GenrePage genre={genre} posts={filteredPosts} />);
     },
 );
 

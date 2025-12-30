@@ -31,7 +31,7 @@ export default jsxRenderer(async ({ children, title }) => {
     const categories = [
         ...new Set(
             posts //
-                .map((post) => post.frontmatter.category)
+                .map((post) => post.frontmatter.genre)
                 .filter(Boolean) as string[],
         ),
     ];

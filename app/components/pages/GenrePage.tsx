@@ -1,14 +1,14 @@
 import type { Post } from "../../lib/posts";
 
 type Props = {
-    category: string;
+    genre: string;
     posts: Post[];
 };
 
-export const GenrePage = ({ category, posts }: Props) => (
+export const GenrePage = ({ genre, posts }: Props) => (
     <div>
-        <title>Genre: {category}</title>
-        <h1 class="mb-8 font-bold text-4xl">Genre: {category}</h1>
+        <title>{genre}</title>
+        <h1 class="mb-8 font-bold text-4xl">Genre: {genre}</h1>
         <ul class="space-y-4">
             {posts.map((post) => (
                 <li key={post.slug}>

@@ -3,7 +3,7 @@ title: "TypeScriptの型安全"
 create_date: 2025-12-01
 update_date: 2025-12-01
 author: "Gemini"
-category: "TypeScript"
+genre: "TypeScript"
 ---
 
 # TypeScriptにおける型安全性の重要性

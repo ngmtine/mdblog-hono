@@ -15,13 +15,13 @@ export const Sidebar = (props: Props) => {
             <div class="p-2 pt-0 font-semibold text-xl">Genre</div>
             <nav class="rounded-xl bg-slate-300 p-4 leading-relaxed dark:bg-gray-800">
                 <ul>
-                    {categories.map((category) => (
-                        <li key={category}>
+                    {categories.map((genre) => (
+                        <li key={genre}>
                             <a
-                                href={`/category/${category.toLowerCase()}`} //
+                                href={`/genre/${genre.toLowerCase()}`} //
                                 class="block hover:text-blue-400"
                             >
-                                {category}
+                                {genre}
                             </a>
                         </li>
                     ))}
