@@ -11,10 +11,10 @@ type Props = {
 export const Sidebar = (props: Props) => {
     const { posts, categories } = props;
     return (
-        <div class="space-y-6 rounded-xl bg-gray-800 p-4 text-white">
-            <div class="font-semibold text-xl">Categories</div>
-            <nav>
-                <ul class="space-y-2">
+        <div class="rounded-xl bg-slate-200 p-2 dark:bg-gray-850">
+            <div class="p-2 pt-0 font-semibold text-xl">Genre</div>
+            <nav class="rounded-xl bg-slate-300 p-4 leading-relaxed dark:bg-gray-800">
+                <ul>
                     {categories.map((category) => (
                         <li key={category}>
                             <a
@@ -27,9 +27,9 @@ export const Sidebar = (props: Props) => {
                     ))}
                 </ul>
             </nav>
-            <div class="font-semibold text-xl">Recent Posts</div>
-            <nav>
-                <ul class="space-y-2">
+            <div class="p-2 font-semibold text-xl">Recent</div>
+            <nav class="rounded-xl bg-slate-300 p-4 leading-relaxed dark:bg-gray-800">
+                <ul>
                     {posts.map((post) => (
                         <li key={post.slug}>
                             <a
