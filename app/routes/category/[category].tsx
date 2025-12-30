@@ -1,7 +1,7 @@
 import { ssgParams } from "hono/ssg";
 import { createRoute } from "honox/factory";
 
-import { CategoryPage } from "../../components/pages/CategoryPage";
+import { GenrePage } from "../../components/pages/GenrePage";
 import { getAllPosts } from "../../lib/posts";
 
 // SSG: Generate static files for each category
@@ -22,5 +22,5 @@ export default createRoute(async (c) => {
         return c.notFound();
     }
 
-    return c.render(<CategoryPage category={category} posts={filteredPosts} />);
+    return c.render(<GenrePage category={category} posts={filteredPosts} />);
 });

@@ -35,7 +35,7 @@
 │   │   ├── IndexPage.tsx
 │   │   ├── PostPage.tsx
 │   │   ├── AboutPage.tsx
-│   │   └── CategoryPage.tsx
+│   │   └── GenrePage.tsx
 │   └── functionalIcons/                # 機能アイコン
 │       ├── $toggleDarkmodeButton.tsx
 │       ├── githubLinkButton.tsx

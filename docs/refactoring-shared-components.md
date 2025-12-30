@@ -67,7 +67,7 @@ export const AboutPage = () => (
 );
 ```
 
-#### CategoryPage.tsx
+#### GenrePage.tsx
 ```typescript
 import type { Post } from "../../lib/posts";
 
@@ -76,9 +76,9 @@ interface Props {
     posts: Post[];
 }
 
-export const CategoryPage = ({ category, posts }: Props) => (
+export const GenrePage = ({ category, posts }: Props) => (
     <div>
-        <title>Category: {category}</title>
+        <title>Genre: {category}</title>
         {/* ... */}
     </div>
 );
@@ -194,7 +194,7 @@ app/
 │       ├── IndexPage.tsx
 │       ├── PostPage.tsx
 │       ├── AboutPage.tsx
-│       └── CategoryPage.tsx
+│       └── GenrePage.tsx
 ├── lib/
 │   ├── posts.ts
 │   └── ssg-renderer.tsx   # SSG 専用レンダラー

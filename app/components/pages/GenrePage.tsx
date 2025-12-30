@@ -5,10 +5,10 @@ type Props = {
     posts: Post[];
 };
 
-export const CategoryPage = ({ category, posts }: Props) => (
+export const GenrePage = ({ category, posts }: Props) => (
     <div>
-        <title>Category: {category}</title>
-        <h1 class="mb-8 font-bold text-4xl">Category: {category}</h1>
+        <title>Genre: {category}</title>
+        <h1 class="mb-8 font-bold text-4xl">Genre: {category}</h1>
         <ul class="space-y-4">
             {posts.map((post) => (
                 <li key={post.slug}>
