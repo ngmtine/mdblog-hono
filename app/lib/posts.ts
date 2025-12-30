@@ -1,11 +1,9 @@
-import fs from "node:fs/promises";
-import path from "node:path";
-import matter from "gray-matter";
-import rehypeStringify from "rehype-stringify";
-import { remark } from "remark";
-import remarkFrontmatter from "remark-frontmatter";
-import remarkGfm from "remark-gfm";
-import remarkRehype from "remark-rehype";
+import { POSTS_DIRECTORY } from "./constants";
+
+// Check if we're in Node.js environment (build time or dev) vs Workers runtime
+const isNodeEnv = typeof process !== "undefined" && process.versions != null && process.versions.node != null;
+const isViteDev = import.meta.env?.DEV === true;
+const canUseNodeModules = isNodeEnv || isViteDev;
 
 export interface PostFrontmatter {
     title?: string;
@@ -28,10 +26,20 @@ export type PostMeta = {
 export const parseMarkdown = async (
     file: Buffer, //
 ): Promise<Post> => {
+    if (!canUseNodeModules) {
+        return { frontmatter: {}, content: "" };
+    }
+
+    const matter = (await import("gray-matter")).default;
+    const { remark } = await import("remark");
+    const remarkGfm = (await import("remark-gfm")).default;
+    const remarkFrontmatter = (await import("remark-frontmatter")).default;
+    const remarkRehype = (await import("remark-rehype")).default;
+    const rehypeStringify = (await import("rehype-stringify")).default;
+
     const { data, content: markdownContent } = matter(file);
 
-    // Convert Markdown to HTML
-    const processedFile = await remark()
+    const processedFile = await remark() //
         .use(remarkGfm)
         .use(remarkFrontmatter)
         .use(remarkRehype)
@@ -44,28 +52,43 @@ export const parseMarkdown = async (
 };
 
 type GetPostBySlugArgs = {
-    directory: string;
+    directory?: string;
     slug: string;
 };
 
 export const getPostBySlug = async (
-    args: GetPostBySlugArgs,
+    args: GetPostBySlugArgs, //
 ): Promise<Post | undefined> => {
-    const { directory = "dummy-posts", slug } = args;
+    if (!canUseNodeModules) {
+        return undefined;
+    }
+
+    const fs = await import("node:fs/promises");
+    const path = await import("node:path");
+
+    const { directory = POSTS_DIRECTORY, slug } = args;
 
     try {
         const filePath = path.join(directory, `${slug}.md`);
         const file = await fs.readFile(filePath);
         return parseMarkdown(file);
-    } catch (error) {
-        console.error(error);
+    } catch {
+        // File not found or other error - return undefined silently
         return undefined;
     }
 };
 
 export const getAllPosts = async (
-    directory = "dummy-posts",
+    directory = POSTS_DIRECTORY, //
 ): Promise<PostMeta[]> => {
+    if (!canUseNodeModules) {
+        return [];
+    }
+
+    const fs = await import("node:fs/promises");
+    const path = await import("node:path");
+    const matter = (await import("gray-matter")).default;
+
     try {
         const files = await fs.readdir(directory);
         const posts = await Promise.all(
@@ -81,9 +104,18 @@ export const getAllPosts = async (
                     };
                 }),
         );
-        return posts;
-    } catch (error) {
-        console.error("Error reading posts:", error);
+        // Sort by date descending (newest first)
+        return posts.sort((a, b) => {
+            const dateA = a.frontmatter.date //
+                ? new Date(a.frontmatter.date).getTime()
+                : 0;
+            const dateB = b.frontmatter.date //
+                ? new Date(b.frontmatter.date).getTime()
+                : 0;
+            return dateB - dateA;
+        });
+    } catch {
+        // Directory not found or other error - return empty array silently
         return [];
     }
 };
