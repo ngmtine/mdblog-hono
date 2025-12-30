@@ -11,7 +11,7 @@ type Props = {
 export const Sidebar = (props: Props) => {
     const { posts, categories } = props;
     return (
-        <div className="space-y-6 bg-gray-800 p-4 rounded-md text-white">
+        <div className="space-y-6 bg-gray-800 p-4 rounded-xl text-white">
             <div className="font-semibold text-xl">Categories</div>
             <nav>
                 <ul className="space-y-2">
