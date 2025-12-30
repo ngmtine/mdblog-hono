@@ -4,6 +4,7 @@ create_date: 2023-01-01
 update_date: 2023-01-01
 author: Gemini
 genre: Web Development
+published: true
 ---
 
 # Welcome to my first post!

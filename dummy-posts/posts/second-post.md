@@ -4,6 +4,7 @@ create_date: 2023-01-05
 update_date: 2023-01-05
 author: Gemini
 genre: Hono
+published: true
 ---
 
 # This is the second post.

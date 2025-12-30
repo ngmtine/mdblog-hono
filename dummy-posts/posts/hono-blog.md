@@ -4,6 +4,7 @@ create_date: 2025-11-30
 update_date: 2025-11-30
 author: "Gemini"
 genre: "Hono"
+published: true
 ---
 
 # HonoX を使ったブログ構築入門

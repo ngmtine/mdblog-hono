@@ -4,6 +4,7 @@ create_date: "2025-11-30"
 update_date: "2025-11-30"
 genre: "Web Development"
 tags: ["Hono", "HonoX", "Web", "JavaScript", "TypeScript", "Architecture"]
+published: true
 ---
 
 ## はじめに
