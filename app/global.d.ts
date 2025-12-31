@@ -1,9 +1,16 @@
 import type {} from "hono";
 
+type OgpProps = {
+    ogTitle?: string;
+    ogDescription?: string;
+    ogImage?: string;
+    ogUrl?: string;
+};
+
 declare module "hono" {
-    interface Env {
-        Variables: Record<string, never>;
-        Bindings: Record<string, never>;
+    interface ContextVariableMap {
+        title?: string;
+        ogp?: OgpProps;
     }
 }
 

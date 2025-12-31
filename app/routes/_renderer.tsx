@@ -1,13 +1,24 @@
-import { jsxRenderer } from "hono/jsx-renderer";
+import { jsxRenderer, useRequestContext } from "hono/jsx-renderer";
 import { Link, Script } from "honox/server";
 
 import { getGenreList, Layout } from "../components/layout";
 import { getAllPosts } from "../lib/posts";
 
-// @ts-expect-error
-export default jsxRenderer(async ({ children, title }) => {
+type OgpProps = {
+    ogTitle?: string;
+    ogDescription?: string;
+    ogImage?: string;
+    ogUrl?: string;
+};
+
+export default jsxRenderer(async ({ children }) => {
+    const c = useRequestContext();
     const posts = await getAllPosts();
     const genreList = getGenreList(posts);
+
+    // コンテキストからOGP情報を取得
+    const title = c.get("title");
+    const ogp = c.get("ogp") as OgpProps | undefined;
 
     const headElements = (
         <>
@@ -28,6 +39,7 @@ export default jsxRenderer(async ({ children, title }) => {
             posts={posts}
             genreList={genreList}
             headElements={headElements}
+            ogp={ogp}
         >
             {children}
         </Layout>

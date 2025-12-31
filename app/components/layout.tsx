@@ -22,15 +22,23 @@ export const themeScriptStr = `
     }
 `;
 
+type OgpProps = {
+    ogTitle?: string;
+    ogDescription?: string;
+    ogImage?: string;
+    ogUrl?: string;
+};
+
 type LayoutProps = {
     title?: string;
     posts: Post[];
     genreList: string[];
     headElements: Child;
     children: Child;
+    ogp?: OgpProps;
 };
 
-export const Layout = ({ title, posts, genreList, headElements, children }: LayoutProps) => {
+export const Layout = ({ title, posts, genreList, headElements, children, ogp }: LayoutProps) => {
     return (
         <html lang="ja">
             <head>
@@ -38,6 +46,17 @@ export const Layout = ({ title, posts, genreList, headElements, children }: Layo
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <link rel="icon" href="/favicon.ico" />
                 <title>{title}</title>
+                {/* OGP Meta Tags */}
+                {ogp?.ogTitle && <meta property="og:title" content={ogp.ogTitle} />}
+                {ogp?.ogDescription && <meta property="og:description" content={ogp.ogDescription} />}
+                {ogp?.ogImage && <meta property="og:image" content={ogp.ogImage} />}
+                {ogp?.ogUrl && <meta property="og:url" content={ogp.ogUrl} />}
+                <meta property="og:type" content="article" />
+                {/* Twitter Card Meta Tags */}
+                <meta name="twitter:card" content="summary_large_image" />
+                {ogp?.ogTitle && <meta name="twitter:title" content={ogp.ogTitle} />}
+                {ogp?.ogDescription && <meta name="twitter:description" content={ogp.ogDescription} />}
+                {ogp?.ogImage && <meta name="twitter:image" content={ogp.ogImage} />}
                 <script dangerouslySetInnerHTML={{ __html: themeScriptStr }} />
                 {headElements}
             </head>
