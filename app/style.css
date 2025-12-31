@@ -6,9 +6,76 @@
     --color-gray-850: #1a1f2b;
 }
 
-article img {
-    @apply rounded-xl max-w-full;
-    max-width: 50rem;
+/* ========================================
+   Article
+   ======================================== */
+
+article {
+    img {
+        @apply rounded-xl max-w-full;
+        max-width: 50rem;
+    }
+
+    h1 {
+        @apply text-3xl font-bold;
+    }
+
+    h2 {
+        @apply text-2xl font-bold border-b border-gray-400 dark:border-gray-700;
+    }
+
+    h2:not(:first-child) {
+        @apply pt-4;
+    }
+
+    h3 {
+        @apply text-xl font-bold mt-5 mb-2;
+    }
+
+    h4 {
+        @apply text-lg font-bold mt-4 mb-2;
+    }
+
+    div p {
+        @apply my-2 leading-relaxed;
+    }
+
+    ul {
+        @apply my-4 pl-6 list-disc;
+    }
+
+    ol {
+        @apply my-4 pl-6 list-decimal;
+    }
+
+    li {
+        @apply my-1;
+    }
+
+    blockquote {
+        @apply my-4 pl-4 border-l-4 border-gray-300 dark:border-gray-600 italic text-gray-600 dark:text-gray-400;
+    }
+
+    a {
+        @apply text-blue-600 dark:text-blue-400 hover:underline;
+    }
+
+    table {
+        @apply my-4 w-full border-collapse;
+    }
+
+    th,
+    td {
+        @apply border border-gray-300 dark:border-gray-600 px-4 py-2;
+    }
+
+    th {
+        @apply bg-gray-100 dark:bg-gray-800 font-bold;
+    }
+
+    hr {
+        @apply my-8 border-gray-300 dark:border-gray-600;
+    }
 }
 
 /* ========================================
@@ -16,13 +83,15 @@ article img {
    ======================================== */
 
 /* Inline code */
-article code:not(pre code) {
-    @apply px-1.5 py-0.5 mx-0.5 rounded text-sm font-mono bg-gray-100 dark:bg-gray-800;
-}
+article {
+    code:not(pre code) {
+        @apply px-1.5 py-0.5 mx-0.5 rounded text-sm font-mono bg-gray-100 dark:bg-gray-900;
+    }
 
-/* Code block container */
-article pre {
-    @apply my-4 rounded-lg overflow-x-auto border border-gray-200 dark:border-gray-700;
+    /* Code block container */
+    pre {
+        @apply my-4 rounded-lg overflow-x-auto border border-gray-200 dark:border-gray-700;
+    }
 }
 
 /* Shiki dual theme support */
@@ -34,7 +103,7 @@ pre.shiki {
 html.dark .shiki,
 html.dark .shiki span {
     color: var(--shiki-dark) !important;
-    background-color: var(--shiki-dark-bg) !important;
+    background-color: var(--color-gray-850) !important;
     font-style: var(--shiki-dark-font-style) !important;
     font-weight: var(--shiki-dark-font-weight) !important;
     text-decoration: var(--shiki-dark-text-decoration) !important;
