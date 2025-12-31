@@ -1,7 +1,6 @@
 import { Hono } from "hono";
 import { ssgParams } from "hono/ssg";
 
-import { AboutPage } from "./components/pages/AboutPage";
 import { GenrePage } from "./components/pages/GenrePage";
 import { IndexPage } from "./components/pages/IndexPage";
 import { PostPage } from "./components/pages/PostPage";
@@ -20,11 +19,6 @@ app.get("/", async (c) => {
     const posts = await getAllPosts();
     // @ts-expect-error
     return c.render(<IndexPage posts={posts} />);
-});
-
-// About route
-app.get("/about", (c) => {
-    return c.render(<AboutPage />);
 });
 
 // Dynamic routes with ssgParams for posts
