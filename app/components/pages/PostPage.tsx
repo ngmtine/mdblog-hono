@@ -1,6 +1,6 @@
 import { LikeButton } from "../../components/functionalIcons/$LikeButton";
-import { HatenaShareButton } from "../HatenaShareButton";
-import { TwitterShareButton } from "../TwitterShareButton";
+import { HatenaShareButton } from "../functionalIcons/HatenaShareButton";
+import { TwitterShareButton } from "../functionalIcons/TwitterShareButton";
 import type { Post } from "../../lib/posts";
 
 /**
