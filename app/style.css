@@ -25,7 +25,6 @@ div article:last-child {
 article {
     img {
         @apply rounded-xl max-w-full;
-        max-width: 50rem;
     }
 
     h1 {
