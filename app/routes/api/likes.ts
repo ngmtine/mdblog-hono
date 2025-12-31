@@ -1,6 +1,6 @@
 import { createRoute } from "honox/factory";
 
-import { executeQuery } from "../../lib/db";
+import { addLike, getLikeCount } from "../../lib/db";
 
 // GET: 特定の投稿のいいね数を取得
 export const GET = createRoute(async (c) => {
@@ -11,17 +11,7 @@ export const GET = createRoute(async (c) => {
             return c.json({ error: "Invalid postId" }, 400);
         }
 
-        const query = `
-select
-    count(*) as "like_count"
-from
-    mdblog.likes
-where
-    post_id = $1
-;`;
-        const params = [Number(postId)];
-        const result = await executeQuery<{ like_count: number }>(query, params);
-        const likeCount = result[0]?.like_count ?? 0;
+        const likeCount = await getLikeCount(Number(postId));
 
         return c.json({ likeCount });
     } catch (error) {
@@ -45,27 +35,10 @@ export const POST = createRoute(async (c) => {
         }
 
         // いいね実行
-        const addLikeQuery = `
-insert into
-    mdblog.likes (post_id, user_ip, user_agent)
-values
-    ($1, $2, $3)
-;`;
-        const addLikeParams = [postId, userIp, userAgent];
-        await executeQuery(addLikeQuery, addLikeParams);
+        await addLike(postId, userIp, userAgent);
 
         // いいねカウント
-        const countLikeQuery = `
-select
-    count(*) as "like_count"
-from
-    mdblog.likes
-where
-    post_id = $1
-;`;
-        const countLikeParams = [postId];
-        const result = await executeQuery<{ like_count: number }>(countLikeQuery, countLikeParams);
-        const likeCount = result[0]?.like_count;
+        const likeCount = await getLikeCount(postId);
 
         return c.json({ message: "Like recorded", likeCount });
     } catch (error) {
