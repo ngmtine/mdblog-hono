@@ -1,4 +1,5 @@
 ---
+id: 1
 title: My First Post
 create_date: 2023-01-01
 update_date: 2023-01-01

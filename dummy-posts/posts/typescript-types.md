@@ -1,4 +1,5 @@
 ---
+id: 5
 title: "TypeScriptの型安全"
 create_date: 2025-12-01
 update_date: 2025-12-01

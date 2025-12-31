@@ -1,4 +1,5 @@
 ---
+id: 2
 title: My Second Post
 create_date: 2023-01-05
 update_date: 2023-01-05
