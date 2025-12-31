@@ -1,20 +1,19 @@
-import { useEffect, useRef, useState } from "hono/jsx";
+import { useEffect, useState } from "hono/jsx";
 
 import { SITE_TITLE } from "../lib/constants";
-import { ThemeSwitcher } from "./$themeSwitcher";
 
 export const Header = () => {
-    const headerRef = useRef<HTMLElement>(null);
-    const position = useRef(0);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     useEffect(() => {
-        const headerElement = headerRef.current;
+        const headerElement = document.getElementById("main-header");
         if (!headerElement) return;
+
+        let position = 0;
 
         const handleScroll = () => {
             const currentScrollY = document.documentElement.scrollTop;
-            if (Number(position.current) < currentScrollY) {
+            if (position < currentScrollY) {
                 // 下スクロール
                 headerElement.classList.add("-translate-y-full");
                 headerElement.classList.remove("translate-y-0");
@@ -23,7 +22,7 @@ export const Header = () => {
                 headerElement.classList.add("translate-y-0");
                 headerElement.classList.remove("-translate-y-full");
             }
-            position.current = currentScrollY;
+            position = currentScrollY;
         };
 
         window.addEventListener("scroll", handleScroll);
@@ -32,7 +31,7 @@ export const Header = () => {
 
     return (
         <header
-            ref={headerRef} //
+            id="main-header" //
             class="fixed top-0 z-50 w-full translate-y-0 bg-white/80 shadow-md backdrop-blur-xs transition-transform duration-300 dark:bg-gray-900/80"
         >
             <div class="flex justify-center">
@@ -41,34 +40,6 @@ export const Header = () => {
                         {SITE_TITLE}
                     </a>
                     <div class="flex items-center space-x-4">
-                        <div class="relative">
-                            <nav class={`${isMenuOpen ? "block" : "hidden"} absolute top-full left-0 w-full md:relative md:top-auto md:left-auto md:block md:w-auto`}>
-                                <ul class="flex flex-col rounded-md bg-white p-4 shadow-lg md:flex-row md:space-x-4 md:bg-transparent md:p-0 md:shadow-none dark:bg-gray-800">
-                                    <li>
-                                        <a href="/" class="hover:underline">
-                                            Home
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            href="/posts" //
-                                            class="hover:underline"
-                                        >
-                                            Posts
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            href="/about" //
-                                            class="hover:underline"
-                                        >
-                                            About
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                        <ThemeSwitcher />
                         <button
                             class="md:hidden" //
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
