@@ -2,7 +2,7 @@
     "name": "basic",
     "type": "module",
     "scripts": {
-        "dev": "POSTS_REPO_DIR=dummy-posts vite",
+        "dev": "dotenv -- sh -c 'POSTS_REPO_DIR=dummy-posts vite'",
         "build": "npm run fetch-posts && npm run build:vite && npm run copy-images",
         "fetch-posts": "dotenv -- sh -c 'rm -rf \"$POSTS_REPO_DIR\" && git clone --depth 1 \"$POSTS_REPO_URL\" \"$POSTS_REPO_DIR\" --config url.\"git@github.com:\".insteadOf=\"https://github.com/\"'",
         "build:vite": "dotenv -- sh -c 'vite build --mode client && vite build'",

@@ -1,8 +1,10 @@
+import { GITHUB_USERNAME } from "../../lib/constants";
+
 export const GithubLinkButton = () => {
     return (
         <div class="ml-4 inline-block translate-y-[2px]">
             <a
-                href="https://github.com/ngmtine" //
+                href={`https://github.com/${GITHUB_USERNAME}`} //
                 target="_blank"
                 rel="noreferrer"
             >

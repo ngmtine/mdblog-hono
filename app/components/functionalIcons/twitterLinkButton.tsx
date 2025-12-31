@@ -1,8 +1,10 @@
+import { TWITTER_USERNAME } from "../../lib/constants";
+
 export const TwitterLinkButton = () => {
     return (
         <div class="ml-4 inline-block translate-y-[2px]">
             <a
-                href="https://twitter.com/ngmtine" //
+                href={`https://twitter.com/${TWITTER_USERNAME}`} //
                 target="_blank"
                 rel="noreferrer"
             >

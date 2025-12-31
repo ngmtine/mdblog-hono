@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "hono/jsx";
 
+import { SITE_TITLE } from "../lib/constants";
 import { ThemeSwitcher } from "./$themeSwitcher";
 
 export const Header = () => {
@@ -37,7 +38,7 @@ export const Header = () => {
             <div class="flex justify-center">
                 <div class="flex w-full max-w-5xl items-center justify-between p-4">
                     <a href="/" class="font-bold text-2xl">
-                        My HonoX Blog
+                        {SITE_TITLE}
                     </a>
                     <div class="flex items-center space-x-4">
                         <div class="relative">
