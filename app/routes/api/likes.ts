@@ -1,6 +1,10 @@
 import { createRoute } from "honox/factory";
 
-import { addLike, getLikeCount } from "../../lib/db";
+import { addLike, getLikeCount, type HyperdriveBinding } from "../../lib/db";
+
+type AppEnv = {
+    HYPERDRIVE: HyperdriveBinding;
+};
 
 // GET: 特定の投稿のいいね数を取得
 export const GET = createRoute(async (c) => {
@@ -11,7 +15,8 @@ export const GET = createRoute(async (c) => {
             return c.json({ error: "Invalid postId" }, 400);
         }
 
-        const likeCount = await getLikeCount(Number(postId));
+        const env = c.env as AppEnv;
+        const likeCount = await getLikeCount(env.HYPERDRIVE, Number(postId));
 
         return c.json({ likeCount });
     } catch (error) {
@@ -34,11 +39,13 @@ export const POST = createRoute(async (c) => {
             return c.json({ error: "Invalid postId" }, 400);
         }
 
+        const env = c.env as AppEnv;
+
         // いいね実行
-        await addLike(postId, userIp, userAgent);
+        await addLike(env.HYPERDRIVE, postId, userIp, userAgent);
 
         // いいねカウント
-        const likeCount = await getLikeCount(postId);
+        const likeCount = await getLikeCount(env.HYPERDRIVE, postId);
 
         return c.json({ message: "Like recorded", likeCount });
     } catch (error) {

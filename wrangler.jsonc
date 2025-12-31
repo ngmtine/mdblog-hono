@@ -6,7 +6,13 @@
     "compatibility_flags": ["nodejs_compat"],
     "assets": {
         "directory": "./dist"
-    }
+    },
+    "hyperdrive": [
+        {
+            "binding": "HYPERDRIVE",
+            "id": "aa2c6750b8ff49f1b478866c189d20d7"
+        }
+    ]
     // "vars": {
     //   "MY_VAR": "my-variable"
     // },
