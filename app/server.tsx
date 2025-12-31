@@ -30,15 +30,19 @@ app.get("/about", (c) => {
 // Dynamic routes with ssgParams for posts
 app.get(
     "/posts/:slug",
+
     ssgParams(async () => {
         const posts = await getAllPosts();
         return posts.map((post) => ({ slug: post.slug }));
     }),
+
     async (c) => {
         const slug = c.req.param("slug");
         if (!slug) return c.notFound();
+
         const post = await getPostBySlug({ slug });
         if (!post) return c.notFound();
+
         return c.render(<PostPage post={post} slug={slug} />);
     },
 );
@@ -46,22 +50,29 @@ app.get(
 // Dynamic routes with ssgParams for genreList
 app.get(
     "/genre/:genre",
+
     ssgParams(async () => {
         const posts = await getAllPosts();
-        const genreList = [...new Set(posts.map((post) => post.frontmatter.genre).filter((genre): genre is string => Boolean(genre)))];
+        const genreList = [
+            ...new Set(
+                posts
+                    .map((post) => post.frontmatter.genre) //
+                    .filter((genre): genre is string => Boolean(genre)),
+            ),
+        ];
         return genreList.map((genre) => ({ genre: genre.toLowerCase() }));
     }),
+
     async (c) => {
         const genre = c.req.param("genre");
         if (!genre) return c.notFound();
 
         const posts = await getAllPosts();
-        const filteredPosts = posts.filter((post) => post.frontmatter.genre?.toLowerCase() === genre.toLowerCase());
+        const filteredPosts = posts.filter(
+            (post) => post.frontmatter.genre?.toLowerCase() === genre.toLowerCase(), //
+        );
 
-        if (filteredPosts.length === 0) {
-            return c.notFound();
-        }
-
+        if (filteredPosts.length === 0) return c.notFound();
         return c.render(<GenrePage genre={genre} posts={filteredPosts} />);
     },
 );
