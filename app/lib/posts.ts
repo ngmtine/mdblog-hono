@@ -5,7 +5,7 @@ const isNodeEnv = typeof process !== "undefined" && process.versions != null && 
 const isViteDev = import.meta.env?.DEV === true;
 const canUseNodeModules = isNodeEnv || isViteDev;
 
-export interface PostFrontmatter {
+export type PostFrontmatter = {
     id?: number; // DB上のpost_id（likes機能で使用）
     title?: string;
     create_date?: string;
@@ -13,7 +13,7 @@ export interface PostFrontmatter {
     genre?: string;
     published?: boolean;
     [key: string]: unknown;
-}
+};
 
 export type Post = {
     slug: string;
@@ -90,9 +90,7 @@ type GetPostBySlugArgs = {
 export const getPostBySlug = async (
     args: GetPostBySlugArgs, //
 ): Promise<Post | undefined> => {
-    if (!canUseNodeModules) {
-        return undefined;
-    }
+    if (!canUseNodeModules) return undefined;
 
     const fs = await import("node:fs/promises");
     const path = await import("node:path");
@@ -111,9 +109,7 @@ export const getPostBySlug = async (
 export const getAllPosts = async (
     directory = POSTS_DIRECTORY, //
 ): Promise<Post[]> => {
-    if (!canUseNodeModules) {
-        return [];
-    }
+    if (!canUseNodeModules) return [];
 
     const fs = await import("node:fs/promises");
     const path = await import("node:path");
@@ -139,11 +135,11 @@ export const getAllPosts = async (
 
         // 作成日の降順でソート
         postList = postList.sort((a, b) => {
-            const dateA = a.frontmatter.date //
-                ? new Date(a.frontmatter.create_date ?? 2020).getTime()
+            const dateA = a.frontmatter.create_date //
+                ? new Date(a.frontmatter.create_date).getTime()
                 : 0;
-            const dateB = b.frontmatter.date //
-                ? new Date(b.frontmatter.create_date ?? 2020).getTime()
+            const dateB = b.frontmatter.create_date //
+                ? new Date(b.frontmatter.create_date).getTime()
                 : 0;
             return dateB - dateA;
         });
