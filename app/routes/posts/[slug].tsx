@@ -16,5 +16,18 @@ export default createRoute(async (c) => {
     const post = await getPostBySlug({ slug });
     if (!post) return c.notFound();
 
-    return c.render(<PostPage post={post} slug={slug} />);
+    // 前後の記事を取得（create_date順）
+    const allPosts = await getAllPosts();
+    const currentIndex = allPosts.findIndex((p) => p.slug === slug);
+    const prevPost = currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : undefined;
+    const nextPost = currentIndex > 0 ? allPosts[currentIndex - 1] : undefined;
+
+    return c.render(
+        <PostPage
+            post={post} //
+            slug={slug}
+            prevPost={prevPost}
+            nextPost={nextPost}
+        />,
+    );
 });

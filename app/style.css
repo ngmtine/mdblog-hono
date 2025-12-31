@@ -15,11 +15,11 @@ body {
    ======================================== */
 
 div article:first-child {
-    @apply mt-2
+    @apply mt-2;
 }
 
 div article:last-child {
-    @apply mb-2
+    @apply mb-2;
 }
 
 article {
@@ -66,10 +66,6 @@ article {
 
     blockquote {
         @apply my-4 pl-4 border-l-4 border-gray-300 dark:border-gray-600 italic text-gray-600 dark:text-gray-400;
-    }
-
-    a {
-        @apply text-blue-600 dark:text-blue-400 hover:underline;
     }
 
     table {
