@@ -20,7 +20,7 @@ export type Post = {
     content: string;
 };
 
-export const parseMarkdown = async (
+const parseMarkdown = async (
     file: Buffer,
     slug: string, //
 ): Promise<Post> => {
