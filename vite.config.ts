@@ -18,6 +18,6 @@ export default defineConfig({
         build(),
     ],
     ssr: {
-        external: ["remark", "gray-matter", "@vercel/og"],
+        external: ["remark", "gray-matter", "hono-og", "@vercel/og"],
     },
 });

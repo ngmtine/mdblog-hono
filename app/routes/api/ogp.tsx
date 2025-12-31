@@ -1,4 +1,4 @@
-import { ImageResponse } from "@vercel/og";
+import { ImageResponse } from "hono-og";
 import { createRoute } from "honox/factory";
 
 const username = import.meta.env.VITE_AUTHOR || "";
