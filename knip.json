@@ -1,6 +1,6 @@
 {
     "$schema": "https://unpkg.com/knip@latest/schema.json",
-    "entry": ["app/server.ts", "app/server.tsx", "app/client.ts", "app/routes/**/*.tsx", "app/components/**/*.tsx"],
+    "entry": ["app/server.ts", "app/server.tsx", "app/client.ts", "app/routes/**/*.tsx", "app/components/**/*.tsx", "app/routes/api/**/*.ts", "app/routes/api/**/*.tsx"],
     "project": ["app/**/*.{ts,tsx}"],
     "ignore": ["app/global.d.ts"],
     "ignoreDependencies": ["@hono/vite-dev-server", "tailwindcss"],
