@@ -75,13 +75,13 @@ export const ssgRenderer = jsxRenderer(async ({ children, title }) => {
                 <Header />
                 <div class="flex justify-center">
                     <div class="flex w-full max-w-5xl">
-                        <aside class="sticky top-0 hidden h-screen w-70 min-w-70 overflow-y-hidden pt-30 pl-4 md:block">
+                        <aside class="sticky top-0 hidden h-screen w-70 min-w-70 overflow-y-hidden pt-20 pl-4 md:block">
                             <Sidebar //
                                 posts={posts}
                                 genreList={genreList}
                             />
                         </aside>
-                        <main class="w-full overflow-x-hidden p-4 pt-30 md:p-8 md:pt-30">{children}</main>
+                        <main class="w-full overflow-x-hidden p-4 pt-20 md:p-8 md:pt-20">{children}</main>
                     </div>
                 </div>
             </body>
