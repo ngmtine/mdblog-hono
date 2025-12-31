@@ -25,6 +25,7 @@ export const PostPage = ({ post, slug, prevPost, nextPost }: Props) => {
         <div>
             <article class="max-w-none rounded-xl border border-gray-400 bg-slate-200 p-2 dark:border-gray-700 dark:bg-gray-850">
                 <h1 class="p-2 font-bold text-4xl">{post.frontmatter.title || slug}</h1>
+                <div class="border-gray-400 border-b dark:border-gray-700" />
                 {post.frontmatter.create_date && (
                     <p class="m-2 mt-0 flex justify-end text-gray-600 text-sm">
                         {new Date(post.frontmatter.create_date).toLocaleDateString()} {/* */}
