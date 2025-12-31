@@ -34,6 +34,7 @@ export const parseMarkdown = async (
     const remarkFrontmatter = (await import("remark-frontmatter")).default;
     const remarkRehype = (await import("remark-rehype")).default;
     const rehypeStringify = (await import("rehype-stringify")).default;
+    const rehypeShiki = (await import("@shikijs/rehype")).default;
 
     const { data, content: markdownContent } = matter(file);
 
@@ -41,6 +42,12 @@ export const parseMarkdown = async (
         .use(remarkGfm)
         .use(remarkFrontmatter)
         .use(remarkRehype)
+        .use(rehypeShiki, {
+            themes: {
+                light: "github-light",
+                dark: "github-dark",
+            },
+        })
         .use(rehypeStringify)
         .process(markdownContent);
 

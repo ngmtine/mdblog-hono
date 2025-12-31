@@ -1,3 +1,4 @@
+/** biome-ignore-all lint/complexity/noImportantStyles: <for force apply shiki style> */
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -6,5 +7,66 @@
 }
 
 article img {
-    @apply rounded-xl;
+    @apply rounded-xl max-w-full;
+    max-width: 50rem;
+}
+
+/* ========================================
+   Code Block Styling
+   ======================================== */
+
+/* Inline code */
+article code:not(pre code) {
+    @apply px-1.5 py-0.5 mx-0.5 rounded text-sm font-mono bg-gray-100 dark:bg-gray-800;
+}
+
+/* Code block container */
+article pre {
+    @apply my-4 rounded-lg overflow-x-auto border border-gray-200 dark:border-gray-700;
+}
+
+/* Shiki dual theme support */
+pre.shiki {
+    @apply p-2 text-sm;
+}
+
+/* Dark mode: Switch to shiki dark theme colors */
+html.dark .shiki,
+html.dark .shiki span {
+    color: var(--shiki-dark) !important;
+    background-color: var(--shiki-dark-bg) !important;
+    font-style: var(--shiki-dark-font-style) !important;
+    font-weight: var(--shiki-dark-font-weight) !important;
+    text-decoration: var(--shiki-dark-text-decoration) !important;
+}
+
+/* ========================================
+   Scrollbar Styling
+   ======================================== */
+
+/* Scrollbar全体 */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+/* Scrollbar背景 */
+::-webkit-scrollbar-track {
+    border-radius: 8px;
+}
+
+/* つまみ部分 */
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+/* ホバースタイル */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* 終端の正方形を削除 */
+::-webkit-scrollbar-corner {
+    background: transparent;
 }
