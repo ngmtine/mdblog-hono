@@ -16,6 +16,7 @@
     "private": true,
     "dependencies": {
         "@shikijs/rehype": "^3.20.0",
+        "@vercel/og": "^0.8.6",
         "gray-matter": "^4.0.3",
         "hono": "^4.10.7",
         "honox": "^0.1.51",
