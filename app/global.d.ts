@@ -6,3 +6,14 @@ declare module "hono" {
         Bindings: Record<string, never>;
     }
 }
+
+interface ImportMetaEnv {
+    readonly VITE_POSTS_REPO_DIR: string;
+    readonly VITE_BASE_URL: string;
+    readonly VITE_DB_CONNECTION_STRING: string;
+}
+
+// biome-ignore lint/correctness/noUnusedVariables: Vite環境変数の型拡張
+interface ImportMeta {
+    readonly env: ImportMetaEnv;
+}

@@ -6,6 +6,7 @@ const isViteDev = import.meta.env?.DEV === true;
 const canUseNodeModules = isNodeEnv || isViteDev;
 
 export interface PostFrontmatter {
+    id?: number; // DB上のpost_id（likes機能で使用）
     title?: string;
     create_date?: string;
     update_date?: string;

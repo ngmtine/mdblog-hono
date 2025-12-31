@@ -1,3 +1,4 @@
+import { LikeButton } from "../../components/functionalIcons/$LikeButton";
 import { HatenaShareButton } from "../HatenaShareButton";
 import { TwitterShareButton } from "../TwitterShareButton";
 import type { Post } from "../../lib/posts";
@@ -33,9 +34,10 @@ export const PostPage = ({ post, slug, prevPost, nextPost }: Props) => {
                     class="rounded-xl border border-gray-400 bg-slate-300 p-4 leading-relaxed dark:border-gray-700 dark:bg-gray-800" //
                     dangerouslySetInnerHTML={{ __html: post.content }}
                 />
-                <div class="mt-4 mr-2 mb-1 flex justify-end gap-4">
+                <div class="mt-4 mr-2 mb-1 flex items-center justify-end gap-4">
                     <HatenaShareButton slug={slug} />
                     <TwitterShareButton slug={slug} title={post.frontmatter.title} />
+                    {post.frontmatter.id && <LikeButton postId={post.frontmatter.id} />}
                 </div>
             </article>
             <nav class="mt-4 flex justify-between">

@@ -19,6 +19,7 @@
         "gray-matter": "^4.0.3",
         "hono": "^4.10.7",
         "honox": "^0.1.51",
+        "postgres": "^3.4.7",
         "rehype-stringify": "^10.0.1",
         "remark": "^15.0.1",
         "remark-frontmatter": "^5.0.0",
