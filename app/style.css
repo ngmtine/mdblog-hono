@@ -6,6 +6,10 @@
     --color-gray-850: #1a1f2b;
 }
 
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 /* ========================================
    Article
    ======================================== */
