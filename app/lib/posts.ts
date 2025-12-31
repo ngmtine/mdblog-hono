@@ -17,15 +17,35 @@ export interface PostFrontmatter {
 export type Post = {
     slug: string;
     frontmatter: PostFrontmatter;
-    content: string;
+    content: string; // 本文
+    excerpt: string; // 記事一覧で表示する本文の冒頭1行
 };
 
+/**
+ * Markdownファイルをパースして、本文の冒頭1行を抜粋する
+ */
+const extractExcerpt = (markdownContent: string): string => {
+    const lines = markdownContent.split("\n");
+    for (const line of lines) {
+        const trimmed = line.trim();
+        // 空行、見出し、コードブロック、リストをスキップ
+        if (!trimmed || trimmed.startsWith("#") || trimmed.startsWith("```") || trimmed.startsWith("-") || trimmed.startsWith("*")) {
+            continue;
+        }
+        return trimmed;
+    }
+    return "";
+};
+
+/**
+ * MarkdownファイルをパースしてPostオブジェクトを作成する
+ */
 const parseMarkdown = async (
     file: Buffer,
     slug: string, //
 ): Promise<Post> => {
     if (!canUseNodeModules) {
-        return { slug, frontmatter: {}, content: "" };
+        return { slug, frontmatter: {}, content: "", excerpt: "" };
     }
 
     const matter = (await import("gray-matter")).default;
@@ -55,7 +75,10 @@ const parseMarkdown = async (
     // 画像の相対パスをルート相対パスに変換
     content = content.replace(/src="images([^"]*)"/g, 'src="/images/$1"');
 
-    return { slug, frontmatter: data as PostFrontmatter, content };
+    // 本文の冒頭1行を抜粋
+    const excerpt = extractExcerpt(markdownContent);
+
+    return { slug, frontmatter: data as PostFrontmatter, content, excerpt };
 };
 
 type GetPostBySlugArgs = {

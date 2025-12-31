@@ -1,3 +1,4 @@
+import { PostCard } from "../PostCard";
 import type { Post } from "../../lib/posts";
 
 type Props = {
@@ -8,18 +9,10 @@ type Props = {
 export const GenrePage = ({ genre, posts }: Props) => (
     <div class="rounded-xl border border-gray-300 bg-slate-200 p-2 dark:border-gray-700 dark:bg-gray-850">
         <h1 class="p-2 font-bold text-4xl">{genre}</h1>
-        <ul class="rounded-xl border border-gray-300 bg-slate-300 p-4 leading-relaxed dark:border-gray-700 dark:bg-gray-800">
+        <div>
             {posts.map((post) => (
-                <li key={post.slug}>
-                    <a
-                        href={`/posts/${post.slug}`} //
-                        class="block hover:text-blue-400"
-                    >
-                        {post.frontmatter.title ?? post.slug}
-                    </a>
-                    <p class="text-gray-600">{post.frontmatter.date}</p>
-                </li>
+                <PostCard key={post.slug} post={post} />
             ))}
-        </ul>
+        </div>
     </div>
 );
