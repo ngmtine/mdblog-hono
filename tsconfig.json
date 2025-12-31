@@ -10,5 +10,6 @@
         "jsx": "react-jsx",
         "jsxImportSource": "hono/jsx"
     },
-    "include": ["**/*.ts", "**/*.tsx"]
+    "include": ["**/*.ts", "**/*.tsx"],
+    "exclude": ["node_modules", "mdblog_old", "dist"]
 }
