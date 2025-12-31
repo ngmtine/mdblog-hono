@@ -65,7 +65,10 @@ export const Layout = ({ title, posts, genreList, headElements, children, ogp }:
                 <div class="flex justify-center">
                     <div class="flex w-full max-w-5xl">
                         <aside class="sticky top-0 hidden h-screen w-70 min-w-70 overflow-y-hidden pt-20 pl-4 md:block">
-                            <Sidebar posts={posts} genreList={genreList} />
+                            <Sidebar
+                                posts={posts.slice(0, 10)} // 最新10件のみ
+                                genreList={genreList}
+                            />
                         </aside>
                         <main class="w-full overflow-x-hidden p-4 pt-20 md:p-8 md:pt-20">{children}</main>
                     </div>
