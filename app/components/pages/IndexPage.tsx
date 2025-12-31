@@ -5,14 +5,14 @@ type Props = {
 };
 
 export const IndexPage = ({ posts }: Props) => (
-    <div class="rounded-xl bg-slate-200 p-2 dark:bg-gray-850">
+    <div class="rounded-xl border border-gray-400 bg-slate-200 p-2 dark:border-gray-700 dark:bg-gray-850">
         {posts.length === 0 ? (
             <p>Loading posts...</p>
         ) : (
             posts.map((post) => (
                 <article
                     key={post.slug} //
-                    class="my-4 rounded-xl bg-slate-300 p-2 leading-relaxed dark:bg-gray-800"
+                    class="my-4 rounded-xl border border-gray-400 bg-slate-300 p-2 leading-relaxed dark:border-gray-700 dark:bg-gray-800"
                 >
                     <a
                         href={`/posts/${post.slug}`} //
