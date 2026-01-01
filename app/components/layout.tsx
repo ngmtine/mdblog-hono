@@ -72,7 +72,7 @@ export const Layout = ({ title, posts, genreList, headElements, children, ogp }:
                 />
                 <aside
                     id="mobile-sidebar" //
-                    class="fixed top-0 left-0 z-50 h-full w-[80vw] max-w-80 -translate-x-full overflow-y-auto bg-white pt-16 transition-transform duration-300 md:hidden dark:bg-gray-900"
+                    class="fixed top-0 left-0 z-50 h-full w-[85vw] max-w-85 -translate-x-full overflow-y-auto bg-white pt-16 transition-transform duration-300 md:hidden dark:bg-gray-900"
                 >
                     <div class="p-4">
                         <Sidebar
@@ -89,7 +89,7 @@ export const Layout = ({ title, posts, genreList, headElements, children, ogp }:
                                 genreList={genreList}
                             />
                         </aside>
-                        <main class="w-full overflow-x-hidden p-4 pt-20 md:p-8 md:pt-20">{children}</main>
+                        <main class="w-full overflow-x-hidden px-2 pt-18 pb-4 md:p-8 md:pt-20">{children}</main>
                     </div>
                 </div>
             </body>

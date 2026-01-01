@@ -32,7 +32,7 @@ export const PostPage = ({ post, slug, prevPost, nextPost }: Props) => {
                     </p>
                 )}
                 <div
-                    class="rounded-xl border border-gray-400 bg-slate-300 p-4 leading-relaxed dark:border-gray-700 dark:bg-gray-800" //
+                    class="rounded-xl border border-gray-400 bg-slate-300 p-2 leading-relaxed md:p-4 dark:border-gray-700 dark:bg-gray-800" //
                     dangerouslySetInnerHTML={{ __html: post.content }}
                 />
                 <div class="mt-4 mr-2 mb-1 flex items-center justify-end gap-4">

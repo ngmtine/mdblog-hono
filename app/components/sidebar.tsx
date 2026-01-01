@@ -44,7 +44,7 @@ export const Sidebar = (props: Props) => {
             </nav>
             <div
                 id="sidebarButtonArea" //
-                class="fixed bottom-0 mb-[0.2rem] ml-10"
+                class="fixed bottom-0 mb-[0.2rem] ml-auto"
             >
                 <ToggleDarkmodeButton />
                 <GithubLinkButton />
