@@ -1,8 +1,8 @@
 // PostgreSQL connection via Hyperdrive or connection string
 import { Client } from "pg";
 
-// Hyperdrive binding type
-export type HyperdriveBinding = {
+// Hyperdrive binding type（内部使用）
+type HyperdriveBinding = {
     connectionString: string;
     host: string;
     port: number;
@@ -16,6 +16,14 @@ export type AppEnv = {
     HYPERDRIVE?: HyperdriveBinding;
 };
 
+/**
+ * Honoのc.envからAppEnv型を取得する
+ * 型アサーションをdb.ts側に集約し、呼び出し側での明示的なアサーションを不要にする
+ */
+export const getAppEnv = (contextEnv: unknown): AppEnv => {
+    return contextEnv as AppEnv;
+};
+
 // DB接続設定の型（内部使用）
 type DbConfig =
     | { type: "hyperdrive"; hyperdrive: HyperdriveBinding } //
@@ -26,9 +34,9 @@ type DbConfig =
  * 本番環境: Hyperdriveを使用
  * 開発環境: connection stringを使用
  */
-const getDbConfig = (hyperdrive?: HyperdriveBinding): DbConfig | null => {
-    if (hyperdrive?.host) {
-        return { type: "hyperdrive", hyperdrive };
+const getDbConfig = (env: AppEnv): DbConfig | null => {
+    if (env.HYPERDRIVE?.host) {
+        return { type: "hyperdrive", hyperdrive: env.HYPERDRIVE };
     }
     const connectionString = import.meta.env.VITE_DB_URL;
     if (connectionString) {
@@ -38,7 +46,7 @@ const getDbConfig = (hyperdrive?: HyperdriveBinding): DbConfig | null => {
 };
 
 type ExecuteQueryParams = {
-    hyperdrive?: HyperdriveBinding;
+    env: AppEnv;
     query: string;
     params?: (string | number)[];
 };
@@ -48,9 +56,9 @@ type ExecuteQueryParams = {
  * @throws Error DB接続設定が見つからない場合
  */
 export const executeQuery = async <T>(
-    { hyperdrive, query, params = [] }: ExecuteQueryParams, //
+    { env, query, params = [] }: ExecuteQueryParams, //
 ): Promise<T[]> => {
-    const config = getDbConfig(hyperdrive);
+    const config = getDbConfig(env);
 
     if (!config) {
         throw new Error("Database not configured");

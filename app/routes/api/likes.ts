@@ -1,26 +1,26 @@
 import { createRoute } from "honox/factory";
 
-import { executeQuery } from "../../lib/db";
-import type { AppEnv, HyperdriveBinding } from "../../lib/db";
+import { executeQuery, getAppEnv } from "../../lib/db";
+import type { AppEnv } from "../../lib/db";
 
 // いいね数を取得
-const getLikeCount = async (hyperdrive: HyperdriveBinding | undefined, postId: number): Promise<number> => {
+const getLikeCount = async (env: AppEnv, postId: number): Promise<number> => {
     const query = `
 SELECT COUNT(*) as like_count
 FROM mdblog.likes
 WHERE post_id = $1
     `;
-    const result = await executeQuery<{ like_count: string }>({ hyperdrive, query, params: [postId] });
+    const result = await executeQuery<{ like_count: string }>({ env, query, params: [postId] });
     return Number(result[0]?.like_count ?? 0);
 };
 
 // いいねを追加
-const addLike = async (hyperdrive: HyperdriveBinding | undefined, postId: number, userIp: string, userAgent: string): Promise<void> => {
+const addLike = async (env: AppEnv, postId: number, userIp: string, userAgent: string): Promise<void> => {
     const query = `
 INSERT INTO mdblog.likes (post_id, user_ip, user_agent)
 VALUES ($1, $2, $3)
     `;
-    await executeQuery({ hyperdrive, query, params: [postId, userIp, userAgent] });
+    await executeQuery({ env, query, params: [postId, userIp, userAgent] });
 };
 
 // GET: 特定の投稿のいいね数を取得
@@ -31,8 +31,8 @@ export const GET = createRoute(async (c) => {
         throw new Error("Invalid postId");
     }
 
-    const env = c.env as AppEnv;
-    const likeCount = await getLikeCount(env.HYPERDRIVE, Number(postId));
+    const env = getAppEnv(c.env);
+    const likeCount = await getLikeCount(env, Number(postId));
 
     return c.json({ likeCount });
 });
@@ -50,10 +50,9 @@ export const POST = createRoute(async (c) => {
         throw new Error("Invalid postId");
     }
 
-    const env = c.env as AppEnv;
-
-    await addLike(env.HYPERDRIVE, postId, userIp, userAgent);
-    const likeCount = await getLikeCount(env.HYPERDRIVE, postId);
+    const env = getAppEnv(c.env);
+    await addLike(env, postId, userIp, userAgent);
+    const likeCount = await getLikeCount(env, postId);
 
     return c.json({ message: "Like recorded", likeCount });
 });
