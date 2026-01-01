@@ -7,7 +7,7 @@
         "fetch-posts": "dotenv -- sh -c 'rm -rf \"$VITE_POSTS_REPO_DIR\" && git clone --depth 1 \"$VITE_POSTS_REPO_URL\" \"$VITE_POSTS_REPO_DIR\" --config url.\"git@github.com:\".insteadOf=\"https://github.com/\"'",
         "build:vite": "dotenv -- sh -c 'vite build --mode client && vite build'",
         "copy-images": "dotenv -- sh -c 'cp -r \"$VITE_POSTS_REPO_DIR/images\" dist/ 2>/dev/null || true'",
-        "preview": "dotenv -- sh -c 'CLOUDFLARE_HYPERDRIVE_LOCAL_CONNECTION_STRING_HYPERDRIVE=\"$VITE_DB_URL\" wrangler dev'",
+        "preview": "dotenv -- sh -c 'CLOUDFLARE_HYPERDRIVE_LOCAL_CONNECTION_STRING_HYPERDRIVE=\"$VITE_DB_CONNECTION_STRING\" wrangler dev'",
         "deploy": "npm run build && wrangler deploy",
         "biome": "biome check --write --unsafe",
         "typecheck": "tsgo --noEmit",

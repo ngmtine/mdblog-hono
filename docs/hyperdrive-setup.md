@@ -134,12 +134,12 @@ export const GET = createRoute(async (c) => {
 ```json
 {
     "scripts": {
-        "preview": "dotenv -- sh -c 'CLOUDFLARE_HYPERDRIVE_LOCAL_CONNECTION_STRING_HYPERDRIVE=\"$VITE_DB_URL\" wrangler dev'"
+        "preview": "dotenv -- sh -c 'CLOUDFLARE_HYPERDRIVE_LOCAL_CONNECTION_STRING_HYPERDRIVE=\"$VITE_DB_CONNECTION_STRING\" wrangler dev'"
     }
 }
 ```
 
-`.env`ファイルに`VITE_DB_URL`を設定しておけば、自動的にローカル接続文字列として使用されます。
+`.env`ファイルに`VITE_DB_CONNECTION_STRING`を設定しておけば、自動的にローカル接続文字列として使用されます。
 
 ### 方法2: 環境変数を直接設定
 

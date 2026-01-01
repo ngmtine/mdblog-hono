@@ -38,7 +38,7 @@ const getDbConfig = (env: AppEnv): DbConfig | null => {
     if (env.HYPERDRIVE?.host) {
         return { type: "hyperdrive", hyperdrive: env.HYPERDRIVE };
     }
-    const connectionString = import.meta.env.VITE_DB_URL;
+    const connectionString = import.meta.env.VITE_DB_CONNECTION_STRING;
     if (connectionString) {
         return { type: "connectionString", connectionString };
     }
