@@ -1,4 +1,4 @@
-const BASE_URL = import.meta.env.VITE_BASE_URL || "";
+import { BASE_URL } from "../../lib/constants";
 
 type Props = {
     slug: string;
@@ -14,7 +14,7 @@ const HatenaIcon = () => (
 );
 
 export const HatenaShareButton = ({ slug }: Props) => {
-    const pageUrl = `${BASE_URL}/posts/${slug}`;
+    const pageUrl = `${BASE_URL}/posts/${encodeURIComponent(slug)}`;
     const shareUrl = `https://b.hatena.ne.jp/entry/${pageUrl}`;
 
     return (

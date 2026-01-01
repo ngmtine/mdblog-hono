@@ -1,4 +1,4 @@
-const BASE_URL = import.meta.env.VITE_BASE_URL || "";
+import { BASE_URL } from "../../lib/constants";
 
 type Props = {
     slug: string;
@@ -12,7 +12,7 @@ const TwitterIcon = () => (
 );
 
 export const TwitterShareButton = ({ slug, title }: Props) => {
-    const pageUrl = `${BASE_URL}/posts/${slug}`;
+    const pageUrl = `${BASE_URL}/posts/${encodeURIComponent(slug)}`;
     const shareUrl = new URL("https://twitter.com/intent/tweet");
     shareUrl.searchParams.set("url", pageUrl);
     if (title) {
