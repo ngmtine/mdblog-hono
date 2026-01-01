@@ -192,6 +192,73 @@ const client = new Client({
 
 Cloudflare Workersは外部ドメインへの接続がポート80/443のみに制限されています。PostgreSQLの標準ポート5432への直接接続はできないため、Hyperdriveを使用する必要があります。
 
+### DBへの書き込みが画面に即座に反映されない
+
+**症状**: `INSERT`などの書き込み操作は即座にDBに反映されるが、その直後の`SELECT`で古い値が返される。画面への反映に数分かかる。
+
+**原因**: Hyperdriveはデフォルトでクエリ結果をキャッシュします。これにより、書き込み直後の読み取りでも古いキャッシュ結果が返されることがあります。
+
+**解決策**: Hyperdriveのキャッシュを無効化します。
+
+#### 方法1: Cloudflareダッシュボードから設定（推奨）
+
+1. Cloudflare Dashboard → **Workers & Pages** → **Hyperdrive**
+2. 該当のHyperdriveを選択
+3. **Settings** → **Caching** を **Disabled** に設定
+
+#### 方法2: wrangler CLIで設定
+
+```bash
+wrangler hyperdrive update <hyperdrive-id> --caching-disabled
+```
+
+例:
+```bash
+wrangler hyperdrive update aa2c6750b8ff49f1b478866c189d20d7 --caching-disabled
+```
+
+#### 方法3: wrangler.tomlで設定
+
+```toml
+[[hyperdrive]]
+binding = "HYPERDRIVE"
+id = "aa2c6750b8ff49f1b478866c189d20d7"
+caching = { disabled = true }
+```
+
+**注意**: wrangler.tomlの設定だけでは既存のHyperdrive設定は更新されない場合があります。確実に反映させるには、ダッシュボードまたはCLIから設定してください。
+
+**補足**: キャッシュを無効化するとパフォーマンスへの影響がありますが、「いいね」カウンターのようなリアルタイム性が必要な機能には必要な設定です。
+
+### クライアント側での楽観的更新
+
+Hyperdriveのキャッシュ問題を回避するもう一つの方法として、クライアント側で楽観的更新を実装する方法があります。
+
+```typescript
+const handleLike = async () => {
+    const previousCount = getCurrentCount();
+
+    // 楽観的更新: APIレスポンスを待たずにUIを更新
+    updateDisplay(previousCount + 1);
+
+    try {
+        const response = await fetch("/api/likes", {
+            method: "POST",
+            body: JSON.stringify({ postId }),
+        });
+
+        // POSTが成功すればOK（レスポンスのlikeCountは使わない）
+        // Hyperdriveのキャッシュにより古い値が返る可能性があるため
+        if (!response.ok) throw new Error("response error");
+    } catch (error) {
+        // エラー時のみロールバック
+        updateDisplay(previousCount);
+    }
+};
+```
+
+この方法では、サーバーからのレスポンス値を使わず、クライアント側で+1した値を信頼します。ただし、ページリロード時には依然としてキャッシュの影響を受けるため、根本的な解決にはHyperdriveのキャッシュ無効化が必要です。
+
 ## 参考リンク
 
 - [Cloudflare Hyperdrive ドキュメント](https://developers.cloudflare.com/hyperdrive/)

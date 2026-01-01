@@ -9,6 +9,7 @@ directory = "./dist"
 [[hyperdrive]]
 binding = "HYPERDRIVE"
 id = "HYPERDRIVE_ID_PLACEHOLDER"
+caching = { disabled = true }
 
 [[routes]]
 pattern = "ROUTES_PATTERN_PLACEHOLDER"

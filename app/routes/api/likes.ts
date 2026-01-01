@@ -23,6 +23,15 @@ VALUES ($1, $2, $3)
     await executeQuery({ env, query, params: [postId, userIp, userAgent] });
 };
 
+// キャッシュ無効化ヘッダー（ブラウザ + Cloudflare CDN両方）
+const noCacheHeaders = {
+    "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0",
+    "CDN-Cache-Control": "no-store", // Cloudflare CDN専用
+    "Cloudflare-CDN-Cache-Control": "no-store", // Cloudflare CDN専用（別名）
+    Pragma: "no-cache",
+    Expires: "0",
+};
+
 // GET: 特定の投稿のいいね数を取得
 export const GET = createRoute(async (c) => {
     const postId = c.req.query("postId");
@@ -34,7 +43,10 @@ export const GET = createRoute(async (c) => {
     const env = getAppEnv(c.env);
     const likeCount = await getLikeCount(env, Number(postId));
 
-    return c.json({ likeCount });
+    return c.json(
+        { likeCount }, //
+        { headers: noCacheHeaders },
+    );
 });
 
 // POST: いいね付与＆いいね数取得
@@ -54,5 +66,8 @@ export const POST = createRoute(async (c) => {
     await addLike(env, postId, userIp, userAgent);
     const likeCount = await getLikeCount(env, postId);
 
-    return c.json({ message: "Like recorded", likeCount });
+    return c.json(
+        { message: "Like recorded", likeCount }, //
+        { headers: noCacheHeaders },
+    );
 });

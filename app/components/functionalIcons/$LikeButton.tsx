@@ -1,4 +1,4 @@
-import { useEffect, useState } from "hono/jsx";
+import { useEffect } from "hono/jsx";
 
 type Props = {
     postId: number;
@@ -17,17 +17,31 @@ const HeartIcon = () => (
     </svg>
 );
 
-export const LikeButton = ({ postId }: Props) => {
-    const [likeCount, setLikeCount] = useState<number | undefined>(undefined);
+// DOM要素のIDを生成
+const getLikeCountElementId = (postId: number) => `like-count-${postId}`;
 
+// DOM要素のテキストを更新
+const updateLikeCountDisplay = (postId: number, count: number) => {
+    const element = document.getElementById(getLikeCountElementId(postId));
+    if (element) {
+        element.textContent = String(count);
+    }
+};
+
+export const LikeButton = ({ postId }: Props) => {
     // 初期いいね数取得
     useEffect(() => {
         const getLikeCount = async () => {
             try {
-                const response = await fetch(`/api/likes?postId=${postId}`);
+                // タイムスタンプでキャッシュバスト
+                const timestamp = Date.now();
+                const response = await fetch(`/api/likes?postId=${postId}&_t=${timestamp}`, {
+                    cache: "no-store",
+                    headers: { "Cache-Control": "no-cache" },
+                });
                 if (!response.ok) throw new Error("response error");
                 const data = (await response.json()) as { likeCount: number };
-                setLikeCount(data.likeCount);
+                updateLikeCountDisplay(postId, data.likeCount);
             } catch (error) {
                 console.error("Error getting likeCount:", error);
             }
@@ -37,21 +51,29 @@ export const LikeButton = ({ postId }: Props) => {
 
     // いいねボタン押下イベント
     const handleLike = async () => {
-        const previousLikeCount = likeCount ?? 0;
+        const element = document.getElementById(getLikeCountElementId(postId));
+        const previousLikeCount = Number(element?.textContent) || 0;
+
         try {
-            setLikeCount(Number(previousLikeCount) + 1); // 楽観的更新
+            // 楽観的更新（DOM直接操作）- この値を信頼する
+            updateLikeCountDisplay(postId, previousLikeCount + 1);
 
             const response = await fetch("/api/likes", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                cache: "no-store",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Cache-Control": "no-cache",
+                },
                 body: JSON.stringify({ postId }),
             });
+
+            // POSTが成功すればOK（レスポンスのlikeCountは使わない）
+            // Hyperdriveの読み取り整合性問題により古い値が返る可能性があるため
             if (!response.ok) throw new Error("response error");
-            const data = (await response.json()) as { likeCount: number };
-            setLikeCount(data.likeCount);
         } catch (error) {
             console.error("Error submitting like:", error);
-            setLikeCount(previousLikeCount); // ロールバック
+            updateLikeCountDisplay(postId, previousLikeCount); // エラー時のみロールバック
         }
     };
 
@@ -63,7 +85,7 @@ export const LikeButton = ({ postId }: Props) => {
             class="group relative inline-flex cursor-pointer items-center justify-center text-gray-600 transition hover:text-red-500 dark:text-gray-400 dark:hover:text-red-500"
         >
             <HeartIcon />
-            <span class="absolute top-[8px] font-bold text-md">{likeCount}</span>
+            <span id={getLikeCountElementId(postId)} class="absolute top-[8px] font-bold text-md" />
         </button>
     );
 };
