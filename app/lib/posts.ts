@@ -149,3 +149,16 @@ export const getAllPosts = async (
         return [];
     }
 };
+
+/**
+ * 全記事からジャンル一覧を取得
+ */
+export const getGenreList = (posts: Post[]): string[] => {
+    return [
+        ...new Set(
+            posts
+                .map((post) => post.frontmatter.genre) //
+                .filter(Boolean) as string[],
+        ),
+    ];
+};

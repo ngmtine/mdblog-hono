@@ -1,7 +1,7 @@
 import { jsxRenderer } from "hono/jsx-renderer";
 
-import { getGenreList, Layout } from "../components/layout";
-import { getAllPosts } from "./posts";
+import { Layout } from "../components/layout";
+import { getAllPosts, getGenreList } from "./posts";
 
 // Check if we're in Node.js environment
 const isNodeEnv =

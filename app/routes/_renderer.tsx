@@ -1,8 +1,8 @@
 import { jsxRenderer, useRequestContext } from "hono/jsx-renderer";
 import { Link, Script } from "honox/server";
 
-import { getGenreList, Layout } from "../components/layout";
-import { getAllPosts } from "../lib/posts";
+import { Layout } from "../components/layout";
+import { getAllPosts, getGenreList } from "../lib/posts";
 
 type OgpProps = {
     ogTitle?: string;
