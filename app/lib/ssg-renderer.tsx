@@ -10,7 +10,7 @@ const isNodeEnv =
     process.versions.node != null;
 
 // SSG-specific renderer without honox/server dependencies
-// @ts-expect-error
+// @ts-expect-error jsxRendererの型定義は拡張が困難なため
 export const ssgRenderer = jsxRenderer(async ({ children, title }) => {
     const posts = await getAllPosts();
     const genreList = getGenreList(posts);

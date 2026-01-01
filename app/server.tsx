@@ -17,7 +17,7 @@ app.use(ssgRenderer);
 // Index route
 app.get("/", async (c) => {
     const posts = await getAllPosts();
-    // @ts-expect-error
+    // @ts-expect-error FIXME: なんかエディタ上でだけ型警告でる？
     return c.render(<IndexPage posts={posts} />);
 });
 

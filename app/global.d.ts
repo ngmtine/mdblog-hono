@@ -1,5 +1,3 @@
-import type {} from "hono";
-
 import type { AppEnv } from "./lib/db";
 
 type OgpProps = {
@@ -10,6 +8,7 @@ type OgpProps = {
 };
 
 declare module "hono" {
+    // c.render() の型を拡張
     type ContextRenderer = (
         content: string | Promise<string>, //
         props?: OgpProps,
