@@ -48,7 +48,7 @@ article {
     }
 
     div p {
-        @apply my-2 leading-relaxed;
+        @apply my-4 leading-relaxed;
     }
 
     ul {
