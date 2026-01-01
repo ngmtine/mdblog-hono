@@ -1,0 +1,15 @@
+name = "mdblog-hono"
+main = "./dist/index.js"
+compatibility_date = "2025-11-30"
+compatibility_flags = ["nodejs_compat"]
+
+[assets]
+directory = "./dist"
+
+[[hyperdrive]]
+binding = "HYPERDRIVE"
+id = "HYPERDRIVE_ID_PLACEHOLDER"
+
+[[routes]]
+pattern = "ROUTES_PATTERN_PLACEHOLDER"
+zone_name = "ROUTES_ZONE_PLACEHOLDER"
