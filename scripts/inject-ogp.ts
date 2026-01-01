@@ -5,7 +5,7 @@ import matter from "gray-matter";
 
 import { BASE_URL } from "../app/lib/constants";
 
-const POSTS_DIR = import.meta.env.VITE_POSTS_REPO_DIR || "posts_repo";
+const POSTS_DIR = process.env.VITE_POSTS_REPO_DIR || "posts_repo";
 const DIST_DIR = "dist/posts";
 
 type PostFrontmatter = {
