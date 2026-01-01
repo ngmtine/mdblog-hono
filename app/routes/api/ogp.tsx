@@ -3,16 +3,6 @@ import { createRoute } from "honox/factory";
 
 const username = import.meta.env.VITE_AUTHOR || "";
 
-// フォントデータをグローバルにキャッシュ（同一インスタンス内で再利用 cloudflareの制限回避のため）
-let cachedFontData: ArrayBuffer | null = null;
-
-const getFontData = async (fontUrl: string): Promise<ArrayBuffer> => {
-    if (!cachedFontData) {
-        cachedFontData = await fetch(fontUrl).then((res) => res.arrayBuffer());
-    }
-    return cachedFontData as ArrayBuffer;
-};
-
 export const GET = createRoute(async (c) => {
     const url = new URL(c.req.url);
     const title = url.searchParams.get("title") || "ナイスなタイトルが無いっす";
@@ -23,7 +13,7 @@ export const GET = createRoute(async (c) => {
     const bgImageUrl = new URL("/ogp_background.png", baseUrl).href;
     const iconUrl = new URL("/twitter_icon.png", baseUrl).href;
 
-    const fontData = await getFontData(fontUrl);
+    const fontData = await fetch(fontUrl).then((res) => res.arrayBuffer());
 
     return new ImageResponse(
         <div
