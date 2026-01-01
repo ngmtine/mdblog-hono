@@ -53,6 +53,7 @@ const parseMarkdown = async (
     const { remark } = await import("remark");
     const remarkGfm = (await import("remark-gfm")).default;
     const remarkFrontmatter = (await import("remark-frontmatter")).default;
+    const remarkBreaks = (await import("remark-breaks")).default;
     const remarkRehype = (await import("remark-rehype")).default;
     const rehypeStringify = (await import("rehype-stringify")).default;
     const rehypeShiki = (await import("@shikijs/rehype")).default;
@@ -62,6 +63,7 @@ const parseMarkdown = async (
     const processedFile = await remark() //
         .use(remarkGfm)
         .use(remarkFrontmatter)
+        .use(remarkBreaks)
         .use(remarkRehype)
         .use(rehypeShiki, {
             themes: {
