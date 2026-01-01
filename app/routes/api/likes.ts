@@ -1,9 +1,26 @@
 import { createRoute } from "honox/factory";
 
-import { addLike, getLikeCount, type HyperdriveBinding } from "../../lib/db";
+import { executeQuery } from "../../lib/db";
+import type { AppEnv, HyperdriveBinding } from "../../lib/db";
 
-type AppEnv = {
-    HYPERDRIVE: HyperdriveBinding;
+// いいね数を取得
+const getLikeCount = async (hyperdrive: HyperdriveBinding | undefined, postId: number): Promise<number> => {
+    const query = `
+SELECT COUNT(*) as like_count
+FROM mdblog.likes
+WHERE post_id = $1
+    `;
+    const result = await executeQuery<{ like_count: string }>({ hyperdrive, query, params: [postId] });
+    return Number(result[0]?.like_count ?? 0);
+};
+
+// いいねを追加
+const addLike = async (hyperdrive: HyperdriveBinding | undefined, postId: number, userIp: string, userAgent: string): Promise<void> => {
+    const query = `
+INSERT INTO mdblog.likes (post_id, user_ip, user_agent)
+VALUES ($1, $2, $3)
+    `;
+    await executeQuery({ hyperdrive, query, params: [postId, userIp, userAgent] });
 };
 
 // GET: 特定の投稿のいいね数を取得
