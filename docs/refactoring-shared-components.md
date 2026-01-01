@@ -224,12 +224,6 @@ Vite 6 の新しい SSR モジュールランナーが Node.js ビルトイン�
 - `vite.config.ts` の `environments` 設定を削除（Vite 5 ではサポートされていない）
 - `ssr.external` 設定を維持
 
-### 4. コード品質の改善
-
-- Biome によるコードフォーマットと lint 警告の修正
-- TypeScript の型チェックエラーの解消
-- `app/lib/posts.ts` の Post 型に `slug` プロパティを追加し、関連関数を更新
-
 これらの改修により、開発環境 (`npm run dev`) と本番環境 (`npm run build && npm run preview`) の両方で正常に動作するようになりました。
 
 ## 参考情報
