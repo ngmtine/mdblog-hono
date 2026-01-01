@@ -5,6 +5,37 @@ import { SITE_TITLE } from "../lib/constants";
 export const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+    // メニュー開閉時にサイドバーとオーバーレイを制御
+    useEffect(() => {
+        const sidebar = document.getElementById("mobile-sidebar");
+        const overlay = document.getElementById("mobile-sidebar-overlay");
+
+        if (!sidebar || !overlay) return;
+
+        if (isMenuOpen) {
+            sidebar.classList.remove("-translate-x-full");
+            sidebar.classList.add("translate-x-0");
+            overlay.classList.remove("hidden");
+            document.body.style.overflow = "hidden";
+        } else {
+            sidebar.classList.add("-translate-x-full");
+            sidebar.classList.remove("translate-x-0");
+            overlay.classList.add("hidden");
+            document.body.style.overflow = "";
+        }
+    }, [isMenuOpen]);
+
+    // オーバーレイクリックでメニューを閉じる
+    useEffect(() => {
+        const overlay = document.getElementById("mobile-sidebar-overlay");
+        if (!overlay) return;
+
+        const handleOverlayClick = () => setIsMenuOpen(false);
+        overlay.addEventListener("click", handleOverlayClick);
+        return () => overlay.removeEventListener("click", handleOverlayClick);
+    }, []);
+
+    // ヘッダーのスクロール時の表示/非表示制御
     useEffect(() => {
         const headerElement = document.getElementById("main-header");
         if (!headerElement) return;
@@ -44,7 +75,8 @@ export const Header = () => {
                             class="md:hidden" //
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
                             type="button"
-                            aria-label="Toggle menu"
+                            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+                            aria-expanded={isMenuOpen}
                         >
                             <svg
                                 class="h-6 w-6" //
@@ -55,13 +87,22 @@ export const Header = () => {
                                 role="img"
                                 aria-labelledby="menu-icon-title"
                             >
-                                <title id="menu-icon-title">Menu</title>
-                                <path
-                                    strokeLinecap="round" //
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M4 6h16M4 12h16m-7 6h7"
-                                />
+                                <title id="menu-icon-title">{isMenuOpen ? "Close" : "Menu"}</title>
+                                {isMenuOpen ? (
+                                    <path
+                                        strokeLinecap="round" //
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M6 18L18 6M6 6l12 12"
+                                    />
+                                ) : (
+                                    <path
+                                        strokeLinecap="round" //
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M4 6h16M4 12h16m-7 6h7"
+                                    />
+                                )}
                             </svg>
                         </button>
                     </div>
