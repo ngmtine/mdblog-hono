@@ -21,7 +21,6 @@
         "hono-og": "^0.0.29",
         "honox": "^0.1.51",
         "pg": "^8.16.3",
-        "postgres": "^3.4.7",
         "rehype-stringify": "^10.0.1",
         "remark": "^15.0.1",
         "remark-frontmatter": "^5.0.0",
