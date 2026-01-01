@@ -1,25 +1,15 @@
-import { jsxRenderer, useRequestContext } from "hono/jsx-renderer";
+import { jsxRenderer } from "hono/jsx-renderer";
 import { Link, Script } from "honox/server";
+import type { Child } from "hono/jsx";
 
 import { Layout } from "../components/layout";
 import { getAllPosts, getGenreList } from "../lib/posts";
 
-type OgpProps = {
-    ogTitle?: string;
-    ogDescription?: string;
-    ogImage?: string;
-    ogUrl?: string;
-};
-
-export default jsxRenderer(async ({ children }) => {
-    const c = useRequestContext();
+export default jsxRenderer(async ({ children }: { children?: Child }) => {
     const posts = await getAllPosts();
     const genreList = getGenreList(posts);
 
-    // コンテキストからOGP情報を取得
-    const title = c.get("title");
-    const ogp = c.get("ogp") as OgpProps | undefined;
-
+    // OGP情報はビルド後のinject-ogpスクリプトで注入される
     const headElements = (
         <>
             <Link
@@ -35,11 +25,9 @@ export default jsxRenderer(async ({ children }) => {
 
     return (
         <Layout
-            title={title} //
-            posts={posts}
+            posts={posts} //
             genreList={genreList}
             headElements={headElements}
-            ogp={ogp}
         >
             {children}
         </Layout>

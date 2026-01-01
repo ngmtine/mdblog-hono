@@ -3,10 +3,11 @@
     "type": "module",
     "scripts": {
         "dev": "sh -c 'set -a && . ./.env && set +a && VITE_POSTS_REPO_DIR=dummy-posts vite'",
-        "build": "npm run fetch-posts && npm run build:vite && npm run generate-ogp && npm run copy-images",
+        "build": "npm run fetch-posts && npm run build:vite && npm run generate-ogp && npm run inject-ogp && npm run copy-images",
         "fetch-posts": "sh -c 'set -a && . ./.env && set +a && rm -rf \"$VITE_POSTS_REPO_DIR\" && git clone --depth 1 \"$VITE_POSTS_REPO_URL\" \"$VITE_POSTS_REPO_DIR\" --config url.\"git@github.com:\".insteadOf=\"https://github.com/\"'",
         "build:vite": "sh -c 'set -a && . ./.env && set +a && vite build --mode client && vite build'",
         "generate-ogp": "sh -c 'set -a && . ./.env && set +a && npx tsx scripts/generate-ogp.ts'",
+        "inject-ogp": "sh -c 'set -a && . ./.env && set +a && npx tsx scripts/inject-ogp.ts'",
         "copy-images": "sh -c 'set -a && . ./.env && set +a && cp -r \"$VITE_POSTS_REPO_DIR/images\" dist/ 2>/dev/null || true'",
         "preview": "sh -c 'set -a && . ./.env && set +a && CLOUDFLARE_HYPERDRIVE_LOCAL_CONNECTION_STRING_HYPERDRIVE=\"$VITE_DB_CONNECTION_STRING\" wrangler dev'",
         "deploy": "npm run build && wrangler deploy",
