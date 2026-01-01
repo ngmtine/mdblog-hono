@@ -27,8 +27,14 @@ export default createRoute(async (c) => {
     // OGP情報を構築
     const ogTitle = post.frontmatter.title || slug;
     const ogDescription = post.excerpt || "";
-    const ogImage = `${BASE_URL}/api/ogp?title=${ogTitle}`;
-    const ogUrl = `${BASE_URL}/posts/${slug}`;
+
+    // cloudflareのcpu制限きついのでOGP画像事前生成に変更
+    // const ogImage = `${BASE_URL}/api/ogp?title=${ogTitle}`;
+    // const ogUrl = `${BASE_URL}/posts/${slug}`;
+
+    // OGP画像はビルド時生成
+    const ogImage = `${BASE_URL}/ogp/${encodeURIComponent(slug)}.png`;
+    const ogUrl = `${BASE_URL}/posts/${encodeURIComponent(slug)}`;
 
     // OGP情報をコンテキストに設定
     c.set("title", ogTitle);
