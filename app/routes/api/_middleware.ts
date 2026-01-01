@@ -1,7 +1,7 @@
 import { createMiddleware } from "hono/factory";
 
 // API共通エラーハンドリングミドルウェア
-export default createMiddleware(async (c, next) => {
+const errorHandlingMiddleware = createMiddleware(async (c, next) => {
     try {
         await next();
     } catch (error) {
@@ -13,3 +13,5 @@ export default createMiddleware(async (c, next) => {
         return c.json({ error: message }, status);
     }
 });
+
+export default [errorHandlingMiddleware];
