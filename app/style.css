@@ -15,10 +15,10 @@ body {
    ======================================== */
 
 div article {
-    :first-child {
+    &:first-child {
         @apply mt-2;
     }
-    :last-child {
+    &:last-child {
         @apply mb-2;
     }
 }
