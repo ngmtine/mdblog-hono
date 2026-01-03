@@ -1,7 +1,7 @@
 import { useEffect } from "hono/jsx";
 
 type Props = {
-    postId: number;
+    postId?: number;
 };
 
 const HeartIcon = () => (
@@ -29,6 +29,8 @@ const updateLikeCountDisplay = (postId: number, count: number) => {
 };
 
 export const LikeButton = ({ postId }: Props) => {
+    if (!postId) return null;
+
     // 初期いいね数取得
     useEffect(() => {
         const getLikeCount = async () => {
@@ -85,7 +87,10 @@ export const LikeButton = ({ postId }: Props) => {
             class="group relative inline-flex cursor-pointer items-center justify-center text-gray-600 transition hover:text-red-500 dark:text-gray-400 dark:hover:text-red-500"
         >
             <HeartIcon />
-            <span id={getLikeCountElementId(postId)} class="absolute top-[8px] font-bold text-md" />
+            <span
+                id={getLikeCountElementId(postId)} //
+                class="absolute top-[8px] font-bold text-md"
+            />
         </button>
     );
 };
