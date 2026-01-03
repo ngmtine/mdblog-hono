@@ -1,16 +1,24 @@
 import { PostCard } from "../PostCard";
+import { Card } from "../ui/Card";
 import type { Post } from "../../lib/posts";
 
 type Props = {
     posts: Post[];
 };
 
-export const IndexPage = ({ posts }: Props) => (
-    <div class="rounded-xl border border-gray-400 bg-slate-200 p-2 dark:border-gray-700 dark:bg-gray-850">
+export const IndexPage = (
+    { posts }: Props, //
+) => (
+    <Card class="p-2">
         {posts.length === 0 ? ( //
             <p>Loading posts...</p>
         ) : (
-            posts.map((post) => <PostCard key={post.slug} post={post} />)
+            posts.map((post) => (
+                <PostCard //
+                    key={post.slug}
+                    post={post}
+                />
+            ))
         )}
-    </div>
+    </Card>
 );

@@ -1,4 +1,5 @@
 import { PostCard } from "../PostCard";
+import { Card } from "../ui/Card";
 import type { Post } from "../../lib/posts";
 
 type Props = {
@@ -7,12 +8,15 @@ type Props = {
 };
 
 export const GenrePage = ({ genre, posts }: Props) => (
-    <div class="rounded-xl border border-gray-400 bg-slate-200 p-2 dark:border-gray-700 dark:bg-gray-850">
+    <Card class="p-2">
         <h1 class="p-2 font-bold text-4xl">{genre}</h1>
         <div>
             {posts.map((post) => (
-                <PostCard key={post.slug} post={post} />
+                <PostCard
+                    key={post.slug} //
+                    post={post}
+                />
             ))}
         </div>
-    </div>
+    </Card>
 );

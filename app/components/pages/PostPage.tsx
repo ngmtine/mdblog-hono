@@ -1,6 +1,7 @@
 import { LikeButton } from "../../components/functionalIcons/$LikeButton";
 import { HatenaShareButton } from "../functionalIcons/HatenaShareButton";
 import { TwitterShareButton } from "../functionalIcons/TwitterShareButton";
+import { Card } from "../ui/Card";
 import type { Post } from "../../lib/posts";
 
 /**
@@ -22,29 +23,45 @@ export const PostPage = ({ post, slug, prevPost, nextPost }: Props) => {
     const prevPostTitle = prevPost && `← ${truncateTitle(prevPost.frontmatter.title || prevPost.slug)}`;
     const nextPostTitle = nextPost && `${truncateTitle(nextPost.frontmatter.title || nextPost.slug)} →`;
     return (
-        <div>
-            <article class="max-w-none rounded-xl border border-gray-400 bg-slate-200 p-2 dark:border-gray-700 dark:bg-gray-850">
-                <h1 class="p-2 font-bold text-4xl">{post.frontmatter.title || slug}</h1>
+        <>
+            <Card
+                variant="surface"
+                as="article" //
+                class="max-w-none p-2"
+            >
+                {/* タイトル */}
+                <h1 class="p-2 font-bold text-4xl">
+                    {post.frontmatter.title || slug} {/* */}
+                </h1>
+
+                {/* ボーダー */}
                 <div class="border-gray-400 border-b dark:border-gray-700" />
+
+                {/* 投稿日 */}
                 {post.frontmatter.create_date && (
                     <p class="m-2 mt-0 flex justify-end text-gray-600 text-sm">
                         {new Date(post.frontmatter.create_date).toLocaleDateString()} {/* */}
                     </p>
                 )}
-                <div
-                    class="rounded-xl border border-gray-400 bg-slate-300 p-2 leading-relaxed md:p-4 dark:border-gray-700 dark:bg-gray-800" //
-                    dangerouslySetInnerHTML={{ __html: post.content }}
-                />
+
+                {/* 記事本体 */}
+                <Card variant="inner" class="p-2 leading-relaxed md:p-4">
+                    <div dangerouslySetInnerHTML={{ __html: post.content }} />
+                </Card>
+
+                {/* ボタン類 */}
                 <div class="mt-4 mr-2 mb-1 flex items-center justify-end gap-4">
                     <HatenaShareButton slug={slug} />
                     <TwitterShareButton slug={slug} title={post.frontmatter.title} />
-                    {post.frontmatter.id && <LikeButton postId={post.frontmatter.id} />}
+                    <LikeButton postId={post.frontmatter.id} />
                 </div>
-            </article>
+            </Card>
+
+            {/* 前の記事, 次の記事 */}
             <nav class="mt-4 flex justify-between">
                 <div>{prevPost && <a href={`/posts/${prevPost.slug}`}>{prevPostTitle}</a>}</div>
                 <div>{nextPost && <a href={`/posts/${nextPost.slug}`}>{nextPostTitle}</a>}</div>
             </nav>
-        </div>
+        </>
     );
 };
