@@ -1,4 +1,5 @@
 import { createMiddleware } from "hono/factory";
+import { disableSSG } from "hono/ssg";
 
 // API共通エラーハンドリングミドルウェア
 const errorHandlingMiddleware = createMiddleware(async (c, next) => {
@@ -14,4 +15,4 @@ const errorHandlingMiddleware = createMiddleware(async (c, next) => {
     }
 });
 
-export default [errorHandlingMiddleware];
+export default [disableSSG(), errorHandlingMiddleware];
