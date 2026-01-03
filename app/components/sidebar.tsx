@@ -11,7 +11,8 @@ type Props = {
 export const Sidebar = (props: Props) => {
     const { posts, genreList } = props;
     return (
-        <div class="rounded-xl border border-gray-400 bg-slate-200 p-2 dark:border-gray-700 dark:bg-gray-850">
+        <div class="rounded-xl border border-gray-400 bg-slate-200/80 p-2 dark:border-gray-700 dark:bg-gray-850/80">
+            {/* ジャンル一覧 */}
             <div class="p-2 pt-0 font-semibold text-xl">Genre</div>
             <nav class="rounded-xl border border-gray-400 bg-slate-300 p-4 py-2 leading-relaxed dark:border-gray-700 dark:bg-gray-800">
                 <ul>
@@ -27,6 +28,8 @@ export const Sidebar = (props: Props) => {
                     ))}
                 </ul>
             </nav>
+
+            {/* 新着記事一覧 */}
             <div class="p-2 font-semibold text-xl">Recent</div>
             <nav class="rounded-xl border border-gray-400 bg-slate-300 p-4 py-2 leading-relaxed dark:border-gray-700 dark:bg-gray-800">
                 <ul>
