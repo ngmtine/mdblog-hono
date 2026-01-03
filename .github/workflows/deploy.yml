@@ -1,9 +1,10 @@
 name: Deploy to Cloudflare Workers
 
 on:
-  # メインリポジトリへのpush
   push:
-    branches: [main]
+    branches:
+      - main
+      - "**"
   # 記事リポジトリからのトリガー
   repository_dispatch:
     types: [posts-updated]
@@ -13,6 +14,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment: ${{ github.ref == 'refs/heads/main' && 'production' || 'staging' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -33,7 +35,10 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
       - name: Build
-        run: npm run build:vite && npm run copy-images
+        run: |
+          npx vite build --mode client
+          npx vite build
+          cp -r "$VITE_POSTS_REPO_DIR/images" dist/ 2>/dev/null || true
         env:
           VITE_POSTS_REPO_DIR: ${{ vars.VITE_POSTS_REPO_DIR }}
           VITE_BASE_URL: ${{ vars.VITE_BASE_URL }}
@@ -42,7 +47,16 @@ jobs:
           VITE_GITHUB_USERNAME: ${{ vars.VITE_GITHUB_USERNAME }}
           VITE_TWITTER_USERNAME: ${{ vars.VITE_TWITTER_USERNAME }}
 
+      - name: Generate wrangler.toml
+        run: |
+          sed "s/ACCOUNT_ID_PLACEHOLDER/${{ secrets.CLOUDFLARE_ACCOUNT_ID }}/; s/HYPERDRIVE_ID_PLACEHOLDER/${{ secrets.HYPERDRIVE_ID }}/; s/ROUTES_PATTERN_PLACEHOLDER/${{ vars.ROUTES_PATTERN }}/; s/ROUTES_ZONE_PLACEHOLDER/${{ vars.ROUTES_ZONE }}/" wrangler.template.toml > wrangler.toml
+
       - name: Deploy to Cloudflare Workers
-        run: npx wrangler deploy
+        run: |
+          if [ "${{ github.ref }}" = "refs/heads/main" ]; then
+            npx wrangler deploy --env production
+          else
+            npx wrangler deploy --env staging
+          fi
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}

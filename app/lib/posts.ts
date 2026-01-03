@@ -155,7 +155,7 @@ export const getAllPosts = async (
 /**
  * 全記事からジャンル一覧を取得
  */
-export const getGenreList = (posts: Post[]): string[] => {
+export const extractGenreList = (posts: Post[]): string[] => {
     return [
         ...new Set(
             posts

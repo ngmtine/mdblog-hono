@@ -14,7 +14,7 @@ export default defineConfig({
             client: { input: ["/app/client.ts", "/app/style.css"] },
         }),
         tailwindcss(),
-        ssg({ entry: "./app/server.tsx" }),
+        ssg({ entry: "./app/server.ts" }),
         build(),
     ],
     ssr: {

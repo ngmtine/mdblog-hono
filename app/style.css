@@ -14,12 +14,13 @@ body {
    Article
    ======================================== */
 
-div article:first-child {
-    @apply mt-2;
-}
-
-div article:last-child {
-    @apply mb-2;
+div article {
+    :first-child {
+        @apply mt-2;
+    }
+    :last-child {
+        @apply mb-2;
+    }
 }
 
 article {

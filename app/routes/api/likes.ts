@@ -3,6 +3,9 @@ import { createRoute } from "honox/factory";
 import { executeQuery, getAppEnv } from "../../lib/db";
 import type { AppEnv } from "../../lib/db";
 
+// SSGから除外
+export const ssg = false;
+
 // いいね数を取得
 const getLikeCount = async (env: AppEnv, postId: number): Promise<number> => {
     const query = `
