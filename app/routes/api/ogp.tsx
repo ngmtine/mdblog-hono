@@ -1,6 +1,9 @@
 import { ImageResponse } from "hono-og";
 import { createRoute } from "honox/factory";
 
+// SSGから除外
+export const ssg = false;
+
 const username = import.meta.env.VITE_AUTHOR || "";
 
 export const GET = createRoute(async (c) => {
