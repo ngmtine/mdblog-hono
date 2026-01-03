@@ -14,21 +14,11 @@ export const SidebarWrapper = ({ posts, genreList }: Props) => (
             class="fixed inset-0 z-40 hidden bg-black/50 backdrop-blur-sm md:hidden"
         />
 
-        {/* モバイル用サイドバー（ドロワー形式） */}
+        {/* サイドバー: モバイルはドロワー、デスクトップは常時表示 */}
         <aside
             id="mobile-sidebar"
-            class="fixed top-0 left-0 z-50 h-full w-[85vw] max-w-85 -translate-x-full overflow-y-auto bg-white pt-16 transition-transform duration-300 md:hidden dark:bg-gray-900"
+            class="fixed top-0 left-0 z-50 h-full w-[85vw] max-w-85 -translate-x-full overflow-y-auto bg-white p-4 pt-16 transition-transform duration-300 md:sticky md:z-auto md:h-screen md:w-70 md:min-w-70 md:max-w-none md:translate-x-0 md:overflow-y-hidden md:p-0 md:pt-20 md:pl-4 dark:bg-gray-900"
         >
-            <div class="p-4">
-                <Sidebar
-                    posts={posts} //
-                    genreList={genreList}
-                />
-            </div>
-        </aside>
-
-        {/* デスクトップ用サイドバー */}
-        <aside class="sticky top-0 hidden h-screen w-70 min-w-70 overflow-y-hidden pt-20 pl-4 md:block">
             <Sidebar
                 posts={posts} //
                 genreList={genreList}
