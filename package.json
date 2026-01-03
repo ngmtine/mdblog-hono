@@ -11,7 +11,7 @@
         "copy-images": "sh -c 'set -a && . ./.env && set +a && cp -r \"$VITE_POSTS_REPO_DIR/images\" dist/ 2>/dev/null || true'",
         "generate-wrangler-config": "sh -c 'set -a && . ./.env && set +a && sed \"s/HYPERDRIVE_ID_PLACEHOLDER/$HYPERDRIVE_ID/; s/ROUTES_PATTERN_PLACEHOLDER/$ROUTES_PATTERN/; s/ROUTES_ZONE_PLACEHOLDER/$ROUTES_ZONE/\" wrangler.template.toml > wrangler.toml'",
         "preview": "sh -c 'set -a && . ./.env && set +a && CLOUDFLARE_HYPERDRIVE_LOCAL_CONNECTION_STRING_HYPERDRIVE=\"$VITE_DB_CONNECTION_STRING\" wrangler dev'",
-        "deploy": "npm run build && wrangler deploy",
+        "deploy": "echo 'Use CI/CD for deployment' && exit 1",
         "biome": "biome check --write --unsafe",
         "typecheck": "tsgo --noEmit",
         "knip": "knip"
