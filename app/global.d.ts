@@ -1,24 +1,6 @@
 import type { AppEnv } from "./lib/db";
 
-type OgpProps = {
-    ogTitle?: string;
-    ogDescription?: string;
-    ogImage?: string;
-    ogUrl?: string;
-};
-
 declare module "hono" {
-    // c.render() の型を拡張
-    type ContextRenderer = (
-        content: string | Promise<string>, //
-        props?: OgpProps,
-    ) => Response | Promise<Response>;
-
-    interface ContextVariableMap {
-        title?: string;
-        ogp?: OgpProps;
-    }
-
     // Cloudflare Workers Bindings
     interface Env {
         Bindings: AppEnv;
