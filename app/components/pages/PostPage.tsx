@@ -50,7 +50,7 @@ export const PostPage = ({ post, slug, prevPost, nextPost }: Props) => {
                 </Card>
 
                 {/* ボタン類 */}
-                <div class="mt-2 mr-2 mb-1 flex items-center justify-end gap-4">
+                <div class="mt-1 mr-2 -mb-1 flex items-center justify-end gap-4">
                     <HatenaShareButton slug={slug} />
                     <TwitterShareButton slug={slug} title={post.frontmatter.title} />
                     <LikeButton postId={post.frontmatter.id} />
