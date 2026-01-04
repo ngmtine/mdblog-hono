@@ -8,7 +8,7 @@ type Props = {
 const TwitterIcon = () => (
     <svg
         viewBox="0 0 24 24" //
-        class="h-8 w-8"
+        class="h-8 w-8 transition group-hover:scale-120"
         fill="none"
         stroke="currentColor"
         stroke-width="1.5"
@@ -32,7 +32,7 @@ export const TwitterShareButton = ({ slug, title }: Props) => {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Twitterでシェア"
-            class="inline-flex items-center text-gray-600 hover:text-[#1DA1F2] dark:text-gray-400 dark:hover:text-[#1DA1F2]"
+            class="group inline-flex items-center text-gray-600 hover:text-[#1DA1F2] dark:text-gray-400 dark:hover:text-[#1DA1F2]"
         >
             <TwitterIcon />
         </a>

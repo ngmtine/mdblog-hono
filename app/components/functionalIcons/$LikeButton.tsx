@@ -7,7 +7,7 @@ type Props = {
 const HeartIcon = () => (
     <svg
         viewBox="0 -1.5 24 24"
-        class="h-9 w-9 transition group-hover:scale-120 group-active:scale-95" //
+        class="h-9 w-9 transition group-hover:scale-120" //
         fill="none"
         stroke="currentColor"
         stroke-width="1.5"
