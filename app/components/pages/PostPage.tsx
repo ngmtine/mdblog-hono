@@ -1,5 +1,6 @@
 import { LikeButton } from "../../components/functionalIcons/$LikeButton";
 import { formatDate } from "../../lib/formatDate";
+import { CopyButtonInjector } from "../$copyButtonInjector";
 import { HatenaShareButton } from "../functionalIcons/HatenaShareButton";
 import { TwitterShareButton } from "../functionalIcons/TwitterShareButton";
 import { Card } from "../ui/Card";
@@ -48,6 +49,7 @@ export const PostPage = ({ post, slug, prevPost, nextPost }: Props) => {
                 {/* 記事本体 */}
                 <Card variant="inner" class="p-2 leading-relaxed md:p-4">
                     <div dangerouslySetInnerHTML={{ __html: post.content }} />
+                    <CopyButtonInjector />
                 </Card>
 
                 {/* ボタン類 */}
