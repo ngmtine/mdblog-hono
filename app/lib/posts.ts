@@ -77,6 +77,16 @@ const parseMarkdown = async (
     let content = String(processedFile);
     // 画像の相対パスをルート相対パスに変換
     content = content.replace(/src="images([^"]*)"/g, 'src="/images/$1"');
+    // imgタグをimage-loader divに置き換え
+    content = content.replace(/<img\s+([^>]*?)\/?>/g, (match) => {
+        const srcMatch = match.match(/src="([^"]*)"/);
+        const altMatch = match.match(/alt="([^"]*)"/);
+        const classMatch = match.match(/class="([^"]*)"/);
+        const src = srcMatch ? srcMatch[1] : "";
+        const alt = altMatch ? altMatch[1] : "";
+        const className = classMatch ? classMatch[1] : "";
+        return `<div class="image-loader" data-src="${src}" data-alt="${alt}" data-class="${className}"></div>`;
+    });
 
     // 本文の冒頭1行を抜粋
     const excerpt = extractExcerpt(markdownContent);
