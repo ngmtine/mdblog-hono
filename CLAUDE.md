@@ -1,6 +1,8 @@
 ## プロジェクト概要
 
-HonoX（Hono + Vite）を使用したMarkdownベースのブログシステム。Cloudflare Workersにデプロイされる。
+HonoX（Hono + Vite）を使用したMarkdownベースのブログシステム
+Cloudflare Workersにデプロイされる
+Reactには依存しない
 
 ## 技術スタック
 
@@ -35,6 +37,7 @@ npm run deploy    # Cloudflareへデプロイ
 ```bash
 npm run typecheck  # 型チェック
 npm run biome      # リント・フォーマット
+npm run knip       # 不要コード検出
 ```
 
 ## 命名規則
@@ -49,4 +52,16 @@ npm run biome      # リント・フォーマット
 ## typescriptコーディング規約
 
 - 関数定義はアロー関数を使用する
+- 複数の引数を扱う場合、分割代入を使用する
+- 型定義はtypeを使用する
 - 非同期処理はasync/awaitを使用する
+- 基本的にはnamed exportを使用する ただしフレームワークがdefault exportの使用を前提とする場合は、それに従う
+- 条件式のネストが深くなる場合は、早期リターンを使用することでネストを浅くする
+- 基本的にnullは使用せずundefinedに統一する ただし、以下の場合はnullの使用を認める
+    - apiがnullを使用している場合
+    - nullチェックを行う場合
+    - jsxのreturnにはnullを使用する
+
+## 開発規約
+
+- viteの開発サーバーを勝手に起動や停止をしない
