@@ -1,5 +1,5 @@
 import { formatDate } from "../lib/formatDate";
-import { Card } from "./ui/Card";
+import { Card } from "./ui/card";
 import type { Post } from "../lib/posts";
 
 type Props = {

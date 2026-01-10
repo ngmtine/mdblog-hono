@@ -1,9 +1,9 @@
-import { LikeButton } from "../../components/functionalIcons/$LikeButton";
 import { formatDate } from "../../lib/formatDate";
 import { CopyButtonInjector } from "../$copyButtonInjector";
-import { HatenaShareButton } from "../functionalIcons/HatenaShareButton";
-import { TwitterShareButton } from "../functionalIcons/TwitterShareButton";
-import { Card } from "../ui/Card";
+import { LikeButton } from "../functionalIcons/$likeButton";
+import { HatenaShareButton } from "../functionalIcons/hatenaShareButton";
+import { TwitterShareButton } from "../functionalIcons/twitterShareButton";
+import { Card } from "../ui/card";
 import type { Post } from "../../lib/posts";
 
 /**

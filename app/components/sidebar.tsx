@@ -1,7 +1,7 @@
 import { ToggleDarkmodeButton } from "./functionalIcons/$toggleDarkmodeButton";
 import { GithubLinkButton } from "./functionalIcons/githubLinkButton";
 import { TwitterLinkButton } from "./functionalIcons/twitterLinkButton";
-import { Card } from "./ui/Card";
+import { Card } from "./ui/card";
 import type { Post } from "../lib/posts";
 
 type Props = {

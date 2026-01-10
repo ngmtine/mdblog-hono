@@ -1,7 +1,7 @@
 import { ssgParams } from "hono/ssg";
 import { createRoute } from "honox/factory";
 
-import { GenrePage } from "../../components/pages/GenrePage";
+import { GenrePage } from "../../components/pages/genrePage";
 import { getAllPosts } from "../../lib/posts";
 
 export default createRoute(

@@ -1,6 +1,6 @@
 import { createRoute } from "honox/factory";
 
-import { IndexPage } from "../components/pages/IndexPage";
+import { IndexPage } from "../components/pages/indexPage";
 import { getAllPosts } from "../lib/posts";
 
 export default createRoute(async (c) => {
