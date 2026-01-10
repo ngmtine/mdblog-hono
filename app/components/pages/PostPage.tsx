@@ -1,4 +1,5 @@
 import { LikeButton } from "../../components/functionalIcons/$LikeButton";
+import { formatDate } from "../../lib/formatDate";
 import { HatenaShareButton } from "../functionalIcons/HatenaShareButton";
 import { TwitterShareButton } from "../functionalIcons/TwitterShareButton";
 import { Card } from "../ui/Card";
@@ -40,7 +41,7 @@ export const PostPage = ({ post, slug, prevPost, nextPost }: Props) => {
                 {/* 投稿日 */}
                 {post.frontmatter.create_date && (
                     <p class="m-2 mt-0 flex justify-end text-gray-600 text-sm">
-                        {new Date(post.frontmatter.create_date).toLocaleDateString()} {/* */}
+                        {formatDate(post.frontmatter.create_date)} {/* */}
                     </p>
                 )}
 

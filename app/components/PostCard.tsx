@@ -1,3 +1,4 @@
+import { formatDate } from "../lib/formatDate";
 import { Card } from "./ui/Card";
 import type { Post } from "../lib/posts";
 
@@ -28,7 +29,7 @@ export const PostCard = ({ post }: Props) => (
         {/* 投稿日 */}
         {post.frontmatter.create_date && (
             <span class="flex justify-end text-gray-600 text-sm dark:text-gray-400">
-                {new Date(post.frontmatter.create_date).toLocaleDateString()} {/* */}
+                {formatDate(post.frontmatter.create_date)} {/* */}
             </span>
         )}
 
