@@ -14,15 +14,6 @@ body {
    Article
    ======================================== */
 
-div article {
-    &:first-child {
-        @apply mt-2;
-    }
-    &:last-child {
-        @apply mb-2;
-    }
-}
-
 article {
     img {
         @apply rounded-xl max-w-full;
