@@ -84,6 +84,10 @@ article {
     hr {
         @apply my-8 border-gray-300 dark:border-gray-600;
     }
+
+    a {
+        @apply hover:text-blue-400;
+    }
 }
 
 /* ========================================
