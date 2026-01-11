@@ -14,17 +14,15 @@ export const LoadingImage = ({ src, alt = "", className = "" }: LoadingImageProp
     const [error, setError] = useState(false);
 
     return (
-        <div className={`relative inline-block ${className}`}>
+        <div class={`relative inline-block ${className}`}>
             <img
                 src={src}
                 alt={alt}
                 onLoad={() => setLoaded(true)}
                 onError={() => setError(true)}
-                className={`transition-all duration-300 ${loaded ? "opacity-100 filter-none" : "opacity-70 blur-sm filter"}`}
+                class={`transition-all duration-300 ${loaded ? "opacity-100 filter-none" : "opacity-70 blur-sm filter"}`}
             />
-            {error && (
-                <div className="absolute inset-0 flex items-center justify-center bg-red-50 bg-opacity-75 text-red-600 text-sm dark:bg-red-900 dark:text-red-400">画像の読み込みに失敗しました</div>
-            )}
+            {error && <div class="absolute inset-0 flex items-center justify-center bg-red-50 bg-opacity-75 text-red-600 text-sm dark:bg-red-900 dark:text-red-400">画像の読み込みに失敗しました</div>}
         </div>
     );
 };
