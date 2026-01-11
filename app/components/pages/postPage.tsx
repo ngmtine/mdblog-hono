@@ -28,7 +28,7 @@ export const PostPage = ({ post, slug, prevPost, nextPost }: Props) => {
     return (
         <>
             <Card
-                variant="surface"
+                variant="outer"
                 as="article" //
                 class="max-w-none p-2"
             >

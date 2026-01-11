@@ -11,7 +11,7 @@ type Props = {
 
 export const Sidebar = ({ posts, genreList }: Props) => (
     <Card
-        variant="surface" //
+        variant="outer" //
         class="p-2"
     >
         {/* ジャンル一覧 */}
