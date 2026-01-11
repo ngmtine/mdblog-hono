@@ -57,14 +57,14 @@ export const parseMarkdown = async (
         .use(remarkGfm)
         .use(remarkFrontmatter)
         .use(remarkBreaks)
-        .use(remarkRehype)
+        .use(remarkRehype, { allowDangerousHtml: true })
         .use(rehypeShiki, {
             themes: {
                 light: "github-light",
                 dark: "github-dark",
             },
         })
-        .use(rehypeStringify)
+        .use(rehypeStringify, { allowDangerousHtml: true })
         .process(markdownContent);
 
     let content = String(processedFile);
