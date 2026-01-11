@@ -64,4 +64,6 @@ npm run knip       # 不要コード検出
 
 ## 開発規約
 
-- viteの開発サーバーを勝手に起動や停止をしない
+- 以下コマンドは許可があるまで起動しない
+    - npm run dev
+    - npm run build
