@@ -1,6 +1,6 @@
-import { formatDate } from "../lib/formatDate";
-import { Card } from "./ui/card";
-import type { Post } from "../lib/posts";
+import { formatDate } from "../../lib/formatDate";
+import { Card } from "./card";
+import type { Post } from "../../lib/posts";
 
 type Props = {
     post: Post;

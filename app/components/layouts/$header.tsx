@@ -1,6 +1,6 @@
 import { useEffect, useState } from "hono/jsx";
 
-import { SITE_TITLE } from "../lib/constants";
+import { SITE_TITLE } from "../../lib/constants";
 
 export const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);

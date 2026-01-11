@@ -2,7 +2,7 @@ import type { Child } from "hono/jsx";
 
 import { Header } from "./$header";
 import { SidebarWrapper } from "./sidebarWrapper";
-import type { Post } from "../lib/posts";
+import type { Post } from "../../lib/posts";
 
 export const themeScriptStr = `
     const theme = (() => {

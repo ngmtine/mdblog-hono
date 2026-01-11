@@ -2,7 +2,7 @@ import { jsxRenderer } from "hono/jsx-renderer";
 import { Link, Script } from "honox/server";
 import type { Child } from "hono/jsx";
 
-import { Layout } from "../components/layout";
+import { Layout } from "../components/layouts/layout";
 import { extractGenreList, getAllPosts } from "../lib/posts";
 
 export default jsxRenderer(async ({ children }: { children?: Child }) => {

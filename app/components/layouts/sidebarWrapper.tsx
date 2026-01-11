@@ -1,5 +1,5 @@
 import { Sidebar } from "./sidebar";
-import type { Post } from "../lib/posts";
+import type { Post } from "../../lib/posts";
 
 type Props = {
     posts: Post[];

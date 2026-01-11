@@ -1,4 +1,4 @@
-import { LoadingSpinner } from "../components/loadingSpinner";
+import { LoadingSpinner } from "../components/ui/loadingSpinner";
 
 /**
  * ローディングスピナーの動作確認用ルート

@@ -1,5 +1,5 @@
-import { PostCard } from "../postCard";
 import { Card } from "../ui/card";
+import { PostCard } from "../ui/postCard";
 import type { Post } from "../../lib/posts";
 
 type Props = {
