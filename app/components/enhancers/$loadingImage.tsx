@@ -1,6 +1,6 @@
 import { useState } from "hono/jsx";
 
-import { LoadingSpinner } from "./loadingSpinner";
+import { LoadingSpinner } from "../loadingSpinner";
 
 type LoadingImageProps = {
     src: string;

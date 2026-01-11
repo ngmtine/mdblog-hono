@@ -1,6 +1,6 @@
 import { formatDate } from "../../lib/formatDate";
-import { CopyButtonInjector } from "../$copyButtonInjector";
-import { LoadingImageInjector } from "../$loadingImageInjector";
+import { CopyButtonInjector } from "../enhancers/$copyButtonInjector";
+import { LoadingImageInjector } from "../enhancers/$loadingImageInjector";
 import { LikeButton } from "../functionalIcons/$likeButton";
 import { HatenaShareButton } from "../functionalIcons/hatenaShareButton";
 import { TwitterShareButton } from "../functionalIcons/twitterShareButton";

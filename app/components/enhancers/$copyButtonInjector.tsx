@@ -1,7 +1,7 @@
 import { useEffect } from "hono/jsx";
 import { render } from "hono/jsx/dom";
 
-import { CodeCopyButton } from "./functionalIcons/$codeCopyButton";
+import { CodeCopyButton } from "../functionalIcons/$codeCopyButton";
 
 /**
  * コードブロックにコピーボタンを追加する副作用を提供するコンポーネント
