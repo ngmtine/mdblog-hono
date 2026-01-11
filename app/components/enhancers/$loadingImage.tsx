@@ -9,7 +9,7 @@ type LoadingImageProps = {
 };
 
 /**
- * 画像読み込み中にスピナーを表示し、読み込み完了後に画像を表示するコンポーネント
+ * 画像をプログレッシブに表示し、読み込み完了までスピナーをオーバーレイするコンポーネント
  */
 export const LoadingImage = ({ src, alt = "", className = "" }: LoadingImageProps) => {
     const [loaded, setLoaded] = useState(false);
@@ -17,17 +17,20 @@ export const LoadingImage = ({ src, alt = "", className = "" }: LoadingImageProp
 
     return (
         <div className={`relative inline-block ${className}`}>
-            {!loaded && !error && <LoadingSpinner />}
-            {error ? (
-                <div className="text-red-500 text-sm">画像の読み込みに失敗しました</div>
-            ) : (
-                <img //
-                    src={src}
-                    alt={alt}
-                    onLoad={() => setLoaded(true)}
-                    onError={() => setError(true)}
-                    className={`${loaded ? "block" : "hidden"}`}
-                />
+            <img
+                src={src}
+                alt={alt}
+                onLoad={() => setLoaded(true)}
+                onError={() => setError(true)}
+                className={`transition-all duration-300 ${loaded ? "opacity-100 filter-none" : "opacity-70 blur-sm filter"}`}
+            />
+            {!loaded && !error && (
+                <div className="absolute inset-0 flex items-center justify-center bg-gray-100 bg-opacity-50 dark:bg-gray-800">
+                    <LoadingSpinner />
+                </div>
+            )}
+            {error && (
+                <div className="absolute inset-0 flex items-center justify-center bg-red-50 bg-opacity-75 text-red-600 text-sm dark:bg-red-900 dark:text-red-400">画像の読み込みに失敗しました</div>
             )}
         </div>
     );
