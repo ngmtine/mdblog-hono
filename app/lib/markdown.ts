@@ -50,10 +50,11 @@ export const parseMarkdown = async (
     const remarkRehype = (await import("remark-rehype")).default;
     const rehypeStringify = (await import("rehype-stringify")).default;
     const rehypeShiki = (await import("@shikijs/rehype")).default;
+    const rehypeExternalLinks = (await import("rehype-external-links")).default;
 
     const { data, content: markdownContent } = matter(file);
 
-    const processedFile = await remark() //
+    const processedFile = await remark()
         .use(remarkGfm)
         .use(remarkFrontmatter)
         .use(remarkBreaks)
@@ -63,6 +64,10 @@ export const parseMarkdown = async (
                 light: "github-light",
                 dark: "github-dark",
             },
+        })
+        .use(rehypeExternalLinks, {
+            target: "_blank",
+            rel: ["noopener", "noreferrer"],
         })
         .use(rehypeStringify, { allowDangerousHtml: true })
         .process(markdownContent);
