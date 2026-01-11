@@ -12,15 +12,16 @@ export const CopyButtonInjector = (): null => {
 
         for (const pre of codeBlocks) {
             // すでにボタンが追加されている場合はスキップ
-            if (pre.querySelector(".copy-button-container")) continue;
+            if (pre.classList.contains("has-copy-button")) continue;
 
             const code = pre.querySelector("code");
             if (!code) continue;
 
             const codeText = code.textContent || "";
 
-            // preにrelativeクラスを追加
-            pre.classList.add("relative");
+            // preをラップするdivを作成
+            const wrapper = document.createElement("div");
+            wrapper.classList.add("relative");
 
             // ボタンコンテナを作成
             const buttonContainer = document.createElement("div");
@@ -28,8 +29,18 @@ export const CopyButtonInjector = (): null => {
             // CopyButtonをレンダリング
             render(<CodeCopyButton codeText={codeText} />, buttonContainer);
 
-            // preに追加
-            pre.appendChild(buttonContainer);
+            // wrapperにボタンを追加
+            wrapper.appendChild(buttonContainer);
+
+            // preをwrapperに移動
+            pre.parentElement?.insertBefore(wrapper, pre);
+            wrapper.appendChild(pre);
+
+            // preにマークを追加
+            pre.classList.add("has-copy-button");
+
+            // preのrelativeを削除（もしあれば）
+            pre.classList.remove("relative");
         }
     }, []);
 

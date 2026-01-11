@@ -25,7 +25,7 @@ const ClipboardIcon = () => (
 
 // ツールチップコンポーネント
 const Tooltip = () => (
-    <div class="absolute right-[1px] bottom-full mb-1 whitespace-nowrap rounded-sm bg-gray-600 px-2 py-1 font-semibold text-gray-200 text-xs dark:bg-gray-200 dark:text-gray-800">Copied!</div>
+    <div class="absolute -top-[28px] -right-[5px] mb-1 whitespace-nowrap rounded-sm bg-gray-600 px-2 py-1 font-semibold text-gray-200 text-xs dark:bg-gray-200 dark:text-gray-800">Copied!</div>
 );
 
 type ShowTooltipArgs = {
@@ -68,7 +68,7 @@ type CopyButtonProps = {
 export const CodeCopyButton = ({ codeText }: CopyButtonProps) => {
     const tooltipContainerRef = useRef<HTMLDivElement>(null);
     return (
-        <div class="copy-button-container absolute top-1 right-2 rounded-lg p-1">
+        <div class="copy-button-container absolute top-[4px] right-2 rounded-lg p-1">
             <button
                 type="button"
                 class="cursor-pointer text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
